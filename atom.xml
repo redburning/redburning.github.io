@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>SunshineDxiao&#39;s Blog</title>
+  <title>平凡之路</title>
   
-  <subtitle>一个有情怀的攻城狮，将搬砖进行到底！</subtitle>
+  <subtitle>你可以不上学，但你不能不学习</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://www.douxiao.org/"/>
+  <link href="http://redburning.github.io/"/>
   <updated>2018-05-30T14:04:07.000Z</updated>
-  <id>http://www.douxiao.org/</id>
+  <id>http://redburning.github.io/</id>
   
   <author>
-    <name>SunshineDxiao</name>
+    <name>redburning</name>
     
   </author>
   
@@ -18,8 +18,8 @@
   
   <entry>
     <title>用pyqt5构建人脸识别界面</title>
-    <link href="http://www.douxiao.org/2018/03/12/%E7%94%A8pyqt5%E6%9E%84%E5%BB%BA%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB%E7%95%8C%E9%9D%A2/"/>
-    <id>http://www.douxiao.org/2018/03/12/用pyqt5构建人脸识别界面/</id>
+    <link href="http://redburning.github.io/2018/03/12/%E7%94%A8pyqt5%E6%9E%84%E5%BB%BA%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB%E7%95%8C%E9%9D%A2/"/>
+    <id>http://redburning.github.io/2018/03/12/用pyqt5构建人脸识别界面/</id>
     <published>2018-03-12T01:00:38.000Z</published>
     <updated>2018-05-30T14:04:07.000Z</updated>
     
@@ -31,19 +31,19 @@
     
     </summary>
     
-      <category term="工作" scheme="http://www.douxiao.org/categories/%E5%B7%A5%E4%BD%9C/"/>
+      <category term="工作" scheme="http://redburning.github.io/categories/%E5%B7%A5%E4%BD%9C/"/>
     
     
-      <category term="pyqt5" scheme="http://www.douxiao.org/tags/pyqt5/"/>
+      <category term="pyqt5" scheme="http://redburning.github.io/tags/pyqt5/"/>
     
-      <category term="dlib" scheme="http://www.douxiao.org/tags/dlib/"/>
+      <category term="dlib" scheme="http://redburning.github.io/tags/dlib/"/>
     
   </entry>
   
   <entry>
     <title>搭建Hexo+github博客(二)</title>
-    <link href="http://www.douxiao.org/2017/09/23/%E6%90%AD%E5%BB%BAHexo-github%E5%8D%9A%E5%AE%A2-1/"/>
-    <id>http://www.douxiao.org/2017/09/23/搭建Hexo-github博客-1/</id>
+    <link href="http://redburning.github.io/2017/09/23/%E6%90%AD%E5%BB%BAHexo-github%E5%8D%9A%E5%AE%A2-1/"/>
+    <id>http://redburning.github.io/2017/09/23/搭建Hexo-github博客-1/</id>
     <published>2017-09-23T14:31:56.000Z</published>
     <updated>2018-05-30T14:04:07.000Z</updated>
     
@@ -55,23 +55,23 @@
     
     </summary>
     
-      <category term="博客" scheme="http://www.douxiao.org/categories/%E5%8D%9A%E5%AE%A2/"/>
+      <category term="博客" scheme="http://redburning.github.io/categories/%E5%8D%9A%E5%AE%A2/"/>
     
     
-      <category term="hexo" scheme="http://www.douxiao.org/tags/hexo/"/>
+      <category term="hexo" scheme="http://redburning.github.io/tags/hexo/"/>
     
-      <category term="github" scheme="http://www.douxiao.org/tags/github/"/>
+      <category term="github" scheme="http://redburning.github.io/tags/github/"/>
     
   </entry>
   
   <entry>
     <title>搭建Hexo+github博客(一)</title>
-    <link href="http://www.douxiao.org/2017/09/23/%E6%90%AD%E5%BB%BAHexo-github%E5%8D%9A%E5%AE%A2/"/>
-    <id>http://www.douxiao.org/2017/09/23/搭建Hexo-github博客/</id>
+    <link href="http://redburning.github.io/2017/09/23/%E6%90%AD%E5%BB%BAHexo-github%E5%8D%9A%E5%AE%A2/"/>
+    <id>http://redburning.github.io/2017/09/23/搭建Hexo-github博客/</id>
     <published>2017-09-23T11:58:24.000Z</published>
     <updated>2018-05-30T14:04:07.000Z</updated>
     
-    <content type="html"><![CDATA[<p>　　<font size="5" color="lightseagreen"> 　这篇文章是总结自己的博客搭建之路，包括：初始识Hexo、配置博客的环境、初始化博客、域名申请、绑定域名、博客主题的选定、优化配置博客、markdown编辑器的选定、工作和个人笔记本同时写博客，工作电脑是linux系统，个人电脑是windows系统，这篇文章主要是按照Linux系统的安装布置博客。可能会分几篇博文来写。</font><br><a id="more"></a></p><h1 id="一、初识Hexo"><a href="#一、初识Hexo" class="headerlink" title="一、初识Hexo"></a><font size="5"><strong>一、初识Hexo</strong></font></h1><p>　　　<a href="https://hexo.io/zh-cn/docs/index.html" target="_blank" rel="noopener">Hexo</a>是一款基于Node.js ，快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。</p><h1 id="二、安装Git环境"><a href="#二、安装Git环境" class="headerlink" title="二、安装Git环境"></a><font size="5"><strong>二、安装Git环境</strong></font></h1><p>　　　配置git前，需要到<a href="http://www.github.com" target="_blank" rel="noopener">github官网</a>注册自己的账号,然新建一个username.github.io的仓库。<br>　　　<a href="https://git-scm.com/book/zh/v1/%E8%B5%B7%E6%AD%A5-%E5%AE%89%E8%A3%85-Git" target="_blank" rel="noopener">git安装教程</a><br>　　　<a href="https://git-scm.com/book/zh/v1/%E8%B5%B7%E6%AD%A5-%E5%88%9D%E6%AC%A1%E8%BF%90%E8%A1%8C-Git-%E5%89%8D%E7%9A%84%E9%85%8D%E7%BD%AE" target="_blank" rel="noopener">git配置教程</a><br>　　　<a href="https://git-scm.com/book/zh/v1/%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E7%9A%84-Git-%E7%94%9F%E6%88%90-SSH-%E5%85%AC%E9%92%A5" target="_blank" rel="noopener">git生成ssh公钥</a><br>   <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git<span class="built_in"> config </span>--global user.name <span class="string">"John Doe"</span></span><br><span class="line">$ git<span class="built_in"> config </span>--global user.email johndoe@example.com</span><br></pre></td></tr></table></figure></p><h1 id="三、安装Node-JS环境"><a href="#三、安装Node-JS环境" class="headerlink" title="三、安装Node.JS环境"></a><font size="5"><strong>三、安装Node.JS环境</strong></font></h1><p>  　　　1. <a href="https://nodejs.org/en/" target="_blank" rel="noopener">Node.j安装下载地址</a><br>  　　　2. <a href="https://linux.cn/article-5766-1.html" target="_blank" rel="noopener">在Ubuntu下安装Node.JS的不同方式</a><br>  　　　3. 我使用的是按照命令行的方式，（如果是windows环境，直接下载软件安装就可以了，不过安装后需要重启电脑才能够生效）代码如下<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> apt-get install nodejs</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> npm -v</span></span><br><span class="line">   5.4.2</span><br><span class="line"><span class="meta">$</span><span class="bash"> npm -v</span></span><br><span class="line">v8.4.0</span><br></pre></td></tr></table></figure></p><p>注意：用命令行安装的版本一般不是很高，需要进行升级，升级教程:<a href="http://www.16boke.com/article/detail/26" target="_blank" rel="noopener">一行命令搞定node.js 版本升级</a></p><h1 id="四、安装Hexo"><a href="#四、安装Hexo" class="headerlink" title="四、安装Hexo"></a><font size="5"><strong>四、<a href="https://hexo.io/zh-cn/docs/setup.html" target="_blank" rel="noopener">安装Hexo</a></strong></font></h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> npm install -g hexo-cli</span></span><br></pre></td></tr></table></figure><p>　　安装 Hexo 完成后，请执行下列命令，Hexo 将会在指定文件夹中新建所需要的文件。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> hexo init &lt;folder&gt;</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> &lt;folder&gt;</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> npm install</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hexo new <span class="built_in">test</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hexo g    <span class="comment">#生成静态文件</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hexo s    <span class="comment"># 启动服务器。默认情况下，访问网址为： http://localhost:4000/。</span></span></span><br></pre></td></tr></table></figure></p><p>　　现在来介绍常用的Hexo 命令</p><p>　　npm install hexo -g #安装Hexo<br>　　npm update hexo -g #升级<br>　　hexo init #初始化博客<br>　<br>　　命令简写<br>　　hexo n “我的博客” == hexo new “我的博客” #新建文章<br>　　hexo g == hexo generate #生成<br>　　hexo s == hexo server #启动服务预览<br>　　hexo d == hexo deploy #部署</p><p>　　hexo server #Hexo会监视文件变动并自动更新，无须重启服务器<br>　　hexo server -s #静态模式<br>　　hexo server -p 5000 #更改端口<br>　　hexo server -i 192.168.1.1 #自定义 IP<br>　　hexo clean #清除缓存，若是网页正常情况下可以忽略这条命令</p><p><strong>部署推送网站</strong></p><p>　　下一步将我们的Hexo与GitHub关联起来，打开站点的配置文件_config.yml，翻到最后修改为：</p><p>　　deploy:<br>　　type: git<br>　　repo: 这里填入你之前在GitHub上创建仓库的完整路径，记得加上 .git<br>　　branch: master参考如下：<br>　　保存站点配置文件。</p><p>　　其实就是给hexo d 这个命令做相应的配置，让hexo知道你要把blog部署在哪个位置，很显然，我们部署在我们GitHub的仓库里。最后安装Git部署插件，输入命令：</p>  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> npm install hexo-deployer-git --save</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hexo clean </span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hexo g </span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hexo d</span></span><br></pre></td></tr></table></figure><p>　　访问网站：usrname.github.io</p><h1 id="五、注册并绑定域名"><a href="#五、注册并绑定域名" class="headerlink" title="五、注册并绑定域名"></a><font size="5"><strong>五、<a href="http://www.jianshu.com/p/cea41e5c9b2a" target="_blank" rel="noopener">注册并绑定域名</a></strong></font></h1><p>　　<br> 　　<a href="http://www.douxiao.org">域名访问博客</a></p><h1 id="六、更换主题及优化"><a href="#六、更换主题及优化" class="headerlink" title="六、更换主题及优化"></a><font size="5"><strong>六、更换主题及优化</strong></font></h1><p>　1.博客默认的是landscape主题。<br>　2.自己使用了一段时间next,next主题挺不错的自己也配置了很久，<a href="http://theme-next.iissnan.com/theme-settings.html" target="_blank" rel="noopener">Next主题配置教程官网</a>，<a href="https://juejin.im/post/58eb2fd2a0bb9f006928f8c7" target="_blank" rel="noopener">Next主题优化</a>.<br>　3.自己使用的主题是Yelee主题。<br>  　　<a href="http://moxfive.coding.me/yelee/" target="_blank" rel="noopener">Yelee主题使用说明</a><br>  　　<a href="http://www.netcan666.com/2015/12/15/Hexo%E4%B8%AA%E6%80%A7%E5%8C%96%E7%90%83%E5%BD%A2%E6%A0%87%E7%AD%BE%E4%BA%91/#u6548_u679C_u56FE" target="_blank" rel="noopener">Yelee主题增加球形标签云</a><br>  　　<a href="http://ngudream.com/2017/01/24/n-hexo-blog/" target="_blank" rel="noopener">Yelee主题其他优化</a><br>　　<a href="http://www.flametao.cn/2017/01/29/wordcount/" target="_blank" rel="noopener">Yelee主题字数统计</a><br>　4.Yelee主题增加红心，鼠标点击小红心的设置<br>　　将 <a href="http://7u2ss1.com1.z0.glb.clouddn.com/love.js" target="_blank" rel="noopener">love.js</a> 文件下载添加到 hexo/themes/yelee/source/js 文件目录下。<br>　　找到 hexo/themes/yelee/layout/_partial/footer.ejs 文件， 在文件的最后， 添加以下代码：<br>  <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">  <span class="comment">&lt;!--页面点击小红心--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"/js/love.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p><p>  　5.<a href="http://jomsou.me/2017/07/16/livere/" target="_blank" rel="noopener">增加来必力评论系统</a> </p>]]></content>
+    <content type="html"><![CDATA[<p>　　<font size="5" color="lightseagreen"> 　这篇文章是总结自己的博客搭建之路，包括：初始识Hexo、配置博客的环境、初始化博客、域名申请、绑定域名、博客主题的选定、优化配置博客、markdown编辑器的选定、工作和个人笔记本同时写博客，工作电脑是linux系统，个人电脑是windows系统，这篇文章主要是按照Linux系统的安装布置博客。可能会分几篇博文来写。</font><br><a id="more"></a></p><h1 id="一、初识Hexo"><a href="#一、初识Hexo" class="headerlink" title="一、初识Hexo"></a><font size="5"><strong>一、初识Hexo</strong></font></h1><p>　　　<a href="https://hexo.io/zh-cn/docs/index.html" target="_blank" rel="noopener">Hexo</a>是一款基于Node.js ，快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。</p><h1 id="二、安装Git环境"><a href="#二、安装Git环境" class="headerlink" title="二、安装Git环境"></a><font size="5"><strong>二、安装Git环境</strong></font></h1><p>　　　配置git前，需要到<a href="http://www.github.com" target="_blank" rel="noopener">github官网</a>注册自己的账号,然新建一个username.github.io的仓库。<br>　　　<a href="https://git-scm.com/book/zh/v1/%E8%B5%B7%E6%AD%A5-%E5%AE%89%E8%A3%85-Git" target="_blank" rel="noopener">git安装教程</a><br>　　　<a href="https://git-scm.com/book/zh/v1/%E8%B5%B7%E6%AD%A5-%E5%88%9D%E6%AC%A1%E8%BF%90%E8%A1%8C-Git-%E5%89%8D%E7%9A%84%E9%85%8D%E7%BD%AE" target="_blank" rel="noopener">git配置教程</a><br>　　　<a href="https://git-scm.com/book/zh/v1/%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E7%9A%84-Git-%E7%94%9F%E6%88%90-SSH-%E5%85%AC%E9%92%A5" target="_blank" rel="noopener">git生成ssh公钥</a><br>   <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git<span class="built_in"> config </span>--global user.name <span class="string">"John Doe"</span></span><br><span class="line">$ git<span class="built_in"> config </span>--global user.email johndoe@example.com</span><br></pre></td></tr></table></figure></p><h1 id="三、安装Node-JS环境"><a href="#三、安装Node-JS环境" class="headerlink" title="三、安装Node.JS环境"></a><font size="5"><strong>三、安装Node.JS环境</strong></font></h1><p>  　　　1. <a href="https://nodejs.org/en/" target="_blank" rel="noopener">Node.j安装下载地址</a><br>  　　　2. <a href="https://linux.cn/article-5766-1.html" target="_blank" rel="noopener">在Ubuntu下安装Node.JS的不同方式</a><br>  　　　3. 我使用的是按照命令行的方式，（如果是windows环境，直接下载软件安装就可以了，不过安装后需要重启电脑才能够生效）代码如下<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> apt-get install nodejs</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> npm -v</span></span><br><span class="line">   5.4.2</span><br><span class="line"><span class="meta">$</span><span class="bash"> npm -v</span></span><br><span class="line">v8.4.0</span><br></pre></td></tr></table></figure></p><p>注意：用命令行安装的版本一般不是很高，需要进行升级，升级教程:<a href="http://www.16boke.com/article/detail/26" target="_blank" rel="noopener">一行命令搞定node.js 版本升级</a></p><h1 id="四、安装Hexo"><a href="#四、安装Hexo" class="headerlink" title="四、安装Hexo"></a><font size="5"><strong>四、<a href="https://hexo.io/zh-cn/docs/setup.html" target="_blank" rel="noopener">安装Hexo</a></strong></font></h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> npm install -g hexo-cli</span></span><br></pre></td></tr></table></figure><p>　　安装 Hexo 完成后，请执行下列命令，Hexo 将会在指定文件夹中新建所需要的文件。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> hexo init &lt;folder&gt;</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> &lt;folder&gt;</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> npm install</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hexo new <span class="built_in">test</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hexo g    <span class="comment">#生成静态文件</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hexo s    <span class="comment"># 启动服务器。默认情况下，访问网址为： http://localhost:4000/。</span></span></span><br></pre></td></tr></table></figure></p><p>　　现在来介绍常用的Hexo 命令</p><p>　　npm install hexo -g #安装Hexo<br>　　npm update hexo -g #升级<br>　　hexo init #初始化博客<br>　<br>　　命令简写<br>　　hexo n “我的博客” == hexo new “我的博客” #新建文章<br>　　hexo g == hexo generate #生成<br>　　hexo s == hexo server #启动服务预览<br>　　hexo d == hexo deploy #部署</p><p>　　hexo server #Hexo会监视文件变动并自动更新，无须重启服务器<br>　　hexo server -s #静态模式<br>　　hexo server -p 5000 #更改端口<br>　　hexo server -i 192.168.1.1 #自定义 IP<br>　　hexo clean #清除缓存，若是网页正常情况下可以忽略这条命令</p><p><strong>部署推送网站</strong></p><p>　　下一步将我们的Hexo与GitHub关联起来，打开站点的配置文件_config.yml，翻到最后修改为：</p><p>　　deploy:<br>　　type: git<br>　　repo: 这里填入你之前在GitHub上创建仓库的完整路径，记得加上 .git<br>　　branch: master参考如下：<br>　　保存站点配置文件。</p><p>　　其实就是给hexo d 这个命令做相应的配置，让hexo知道你要把blog部署在哪个位置，很显然，我们部署在我们GitHub的仓库里。最后安装Git部署插件，输入命令：</p>  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> npm install hexo-deployer-git --save</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hexo clean </span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hexo g </span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hexo d</span></span><br></pre></td></tr></table></figure><p>　　访问网站：usrname.github.io</p><h1 id="五、注册并绑定域名"><a href="#五、注册并绑定域名" class="headerlink" title="五、注册并绑定域名"></a><font size="5"><strong>五、<a href="http://www.jianshu.com/p/cea41e5c9b2a" target="_blank" rel="noopener">注册并绑定域名</a></strong></font></h1><p>　　<br> 　　<a href="http://www.douxiao.org" target="_blank" rel="noopener">域名访问博客</a></p><h1 id="六、更换主题及优化"><a href="#六、更换主题及优化" class="headerlink" title="六、更换主题及优化"></a><font size="5"><strong>六、更换主题及优化</strong></font></h1><p>　1.博客默认的是landscape主题。<br>　2.自己使用了一段时间next,next主题挺不错的自己也配置了很久，<a href="http://theme-next.iissnan.com/theme-settings.html" target="_blank" rel="noopener">Next主题配置教程官网</a>，<a href="https://juejin.im/post/58eb2fd2a0bb9f006928f8c7" target="_blank" rel="noopener">Next主题优化</a>.<br>　3.自己使用的主题是Yelee主题。<br>  　　<a href="http://moxfive.coding.me/yelee/" target="_blank" rel="noopener">Yelee主题使用说明</a><br>  　　<a href="http://www.netcan666.com/2015/12/15/Hexo%E4%B8%AA%E6%80%A7%E5%8C%96%E7%90%83%E5%BD%A2%E6%A0%87%E7%AD%BE%E4%BA%91/#u6548_u679C_u56FE" target="_blank" rel="noopener">Yelee主题增加球形标签云</a><br>  　　<a href="http://ngudream.com/2017/01/24/n-hexo-blog/" target="_blank" rel="noopener">Yelee主题其他优化</a><br>　　<a href="http://www.flametao.cn/2017/01/29/wordcount/" target="_blank" rel="noopener">Yelee主题字数统计</a><br>　4.Yelee主题增加红心，鼠标点击小红心的设置<br>　　将 <a href="http://7u2ss1.com1.z0.glb.clouddn.com/love.js" target="_blank" rel="noopener">love.js</a> 文件下载添加到 hexo/themes/yelee/source/js 文件目录下。<br>　　找到 hexo/themes/yelee/layout/_partial/footer.ejs 文件， 在文件的最后， 添加以下代码：<br>  <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">  <span class="comment">&lt;!--页面点击小红心--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"/js/love.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p><p>  　5.<a href="http://jomsou.me/2017/07/16/livere/" target="_blank" rel="noopener">增加来必力评论系统</a> </p>]]></content>
     
     <summary type="html">
     
@@ -79,12 +79,12 @@
     
     </summary>
     
-      <category term="博客" scheme="http://www.douxiao.org/categories/%E5%8D%9A%E5%AE%A2/"/>
+      <category term="博客" scheme="http://redburning.github.io/categories/%E5%8D%9A%E5%AE%A2/"/>
     
     
-      <category term="hexo" scheme="http://www.douxiao.org/tags/hexo/"/>
+      <category term="hexo" scheme="http://redburning.github.io/tags/hexo/"/>
     
-      <category term="github" scheme="http://www.douxiao.org/tags/github/"/>
+      <category term="github" scheme="http://redburning.github.io/tags/github/"/>
     
   </entry>
   
