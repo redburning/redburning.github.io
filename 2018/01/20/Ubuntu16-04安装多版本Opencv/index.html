@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="SunshineDxiao" />
+
+
+
+<meta name="description" content="由于opencv更新了新的版本opencv3.4，又不想把之前的opencv3.2卸载，所以尝试一下安装多版本的opencv，安装记录如下。">
+<meta name="keywords" content="opencv">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ubuntu16.04安装多版本Opencv">
+<meta property="og:url" content="http://www.douxiao.org/2018/01/20/Ubuntu16-04安装多版本Opencv/index.html">
+<meta property="og:site_name" content="SunshineDxiao&#39;s Blog">
+<meta property="og:description" content="由于opencv更新了新的版本opencv3.4，又不想把之前的opencv3.2卸载，所以尝试一下安装多版本的opencv，安装记录如下。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://ow7va355d.bkt.clouddn.com/opencv%E7%9B%AE%E5%BD%95.png">
+<meta property="og:updated_time" content="2018-05-30T14:04:07.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Ubuntu16.04安装多版本Opencv">
+<meta name="twitter:description" content="由于opencv更新了新的版本opencv3.4，又不想把之前的opencv3.2卸载，所以尝试一下安装多版本的opencv，安装记录如下。">
+<meta name="twitter:image" content="http://ow7va355d.bkt.clouddn.com/opencv%E7%9B%AE%E5%BD%95.png">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="SunshineDxiao&#39;s Blog" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/img/dx.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>Ubuntu16.04安装多版本Opencv | SunshineDxiao&#39;s Blog</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
+    <script>
+        yiliaConfig.jquery_ui = [true, "//cdn.bootcss.com/jqueryui/1.10.4/jquery-ui.min.js", "//cdn.bootcss.com/jqueryui/1.10.4/css/jquery-ui.min.css"];
+    </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?356d919e4fff7056e9f7a5bb0d653b87";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/dx.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">SunshineDxiao</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">一个有情怀的攻城狮，将搬砖进行到底！</p>
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="true" />
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class='no-result'>No results found <i class='fa fa-spinner fa-pulse'></i></p>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/随笔">随笔</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="https://mail.google.com/mail/u/0/#inbox" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="https://github.com/douxiao" title="GitHub"></a>
+                            
+                                <a class="fa RSS" href="/atom.xml" title="RSS"></a>
+                            
+                                <a class="fa 简书" href="http://www.jianshu.com/users/9051ab9206e9/timeline" title="简书"></a>
+                            
+                                <a class="fa CSDN" href="http://blog.csdn.net/u010987458" title="CSDN"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Andrew-NG/">Andrew NG</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CNN/">CNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DeepLearning/">DeepLearning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GBK编码/">GBK编码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nvidia-Tx1/">Nvidia-Tx1</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SSD/">SSD</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP/">TCP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UDP/">UDP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/">android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/desktop/">desktop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dlib/">dlib</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eclipse/">eclipse</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/env/">env</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/numpy/">numpy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/object-detection/">object-detection</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/opencv/">opencv</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pyqt5/">pyqt5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tensorflow/">tensorflow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tfmodel/">tfmodel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/">ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yolo/">yolo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/嵌入式GPU/">嵌入式GPU</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/总结/">总结</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/感悟/">感悟</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/目标检测/">目标检测</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/神经网络/">神经网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://weibo.com/u/5206628908/home?leftnav=1">Weibo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://github.com/kuailexiaoxiao">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://www.facebook.com/dou.xiao.739">FaceBook</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://www.kaggle.com/douxiao">Kaggle</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">Reading Thinking Coding</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">SunshineDxiao</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/dx.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">SunshineDxiao</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">一个有情怀的攻城狮，将搬砖进行到底！</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/随笔">随笔</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="https://mail.google.com/mail/u/0/#inbox" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/douxiao" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                                <a class="fa 简书" target="_blank" href="http://www.jianshu.com/users/9051ab9206e9/timeline" title="简书"></a>
+                            
+                                <a class="fa CSDN" target="_blank" href="http://blog.csdn.net/u010987458" title="CSDN"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-Ubuntu16-04安装多版本Opencv" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/01/20/Ubuntu16-04安装多版本Opencv/" class="article-date">
+      <time datetime="2018-01-20T01:23:13.000Z" itemprop="datePublished">2018-01-20</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Ubuntu16.04安装多版本Opencv
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/工作/">工作</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/opencv/">opencv</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>　<font size="5" color="lightseagreen">由于opencv更新了新的版本opencv3.4，又不想把之前的opencv3.2卸载，所以尝试一下安装多版本的opencv，安装记录如下。<br> </font><br><a id="more"></a></p>
+<h1 id="一、opencv3-4的一些特性（和opencv3-2比较）"><a href="#一、opencv3-4的一些特性（和opencv3-2比较）" class="headerlink" title="一、opencv3.4的一些特性（和opencv3.2比较）"></a><a href="#一、opencv3-4的一些特性（和opencv3-2比较）" title="一、opencv3.4的一些特性（和opencv3.2比较）"></a>一、opencv3.4的一些特性（和opencv3.2比较）</h1><p> 1、将DNN模块从opencv_contrib推广到主存储库，并对其进行了改进和加速，一个外部的BLAS实现不在需要，对于GPU，使用Halide进行实验DNN加速。<br> 2、增加了faster-rcnn支持。<br> 3、英特尔媒体SDK现在可以被我们的视频模块利用来进行硬件加速的视频编码/解码。支持MPEG1 / 2和H.264。<br> 4、现在可以使用标志ENABLE_CXX11将OpenCV构建为C++ 11库。为C++ 11程序员添加了一些很酷的功能。</p>
+<h1 id="二、下载opencv3-4"><a href="#二、下载opencv3-4" class="headerlink" title="二、下载opencv3.4"></a><a href="#二、下载opencv3-4" title="二、下载opencv3.4"></a>二、下载opencv3.4</h1><p>  <a href="https://opencv.org/releases.html" target="_blank" rel="noopener">opencv3.4下载地址</a><br>  <a href="https://github.com/opencv/opencv_contrib/releases" target="_blank" rel="noopener">opencv_contrib下载地址</a><br>  目录如下图所示（里面还包含之前opencv3.2的安装目录）：<br>  <img src="http://ow7va355d.bkt.clouddn.com/opencv%E7%9B%AE%E5%BD%95.png" alt=""></p>
+<h1 id="三、安装步骤"><a href="#三、安装步骤" class="headerlink" title="三、安装步骤"></a><a href="#三、安装步骤" title="三、安装步骤"></a>三、安装步骤</h1><h2 id="1、Update-packages"><a href="#1、Update-packages" class="headerlink" title="1、Update packages"></a><a href="#1、Update-packages" title="1、Update packages"></a>1、Update packages</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sudo apt-get update</div><div class="line">sudo apt-get upgrade</div></pre></td></tr></table></figure>
+
+<h2 id="2、Install-OS-libraries"><a href="#2、Install-OS-libraries" class="headerlink" title="2、Install OS libraries"></a><a href="#2、Install-OS-libraries" title="2、Install OS libraries"></a>2、Install OS libraries</h2><h3 id="1-删除先前安装-x264"><a href="#1-删除先前安装-x264" class="headerlink" title="1)删除先前安装 x264"></a><a href="#1-删除先前安装-x264" title="1)删除先前安装 x264"></a>1)删除先前安装 x264</h3><p><code>sudo apt-get remove x264 libx264-dev</code></p>
+<h3 id="2-安装依赖"><a href="#2-安装依赖" class="headerlink" title="2)安装依赖"></a><a href="#2-安装依赖" title="2)安装依赖"></a>2)安装依赖</h3><p>安装依赖解释如下图：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#构建系统               编译依赖         跟踪安装      环境配置脚本      Intel汇编器  GCC的Fortran编译前端</span></div><div class="line">sudo apt-get install build-essential checkinstall cmake pkg-config    yasm      gfortran</div><div class="line"><span class="comment"># 图片库：            JPG库的头文件   JPEG-2000库头文件   PNG库头文件   TIFF库头文件</span></div><div class="line">sudo apt-get install libjpeg8-dev  libjasper-dev     libpng12-dev  libtiff5-dev</div><div class="line"><span class="comment"># 视频库：            FFmpeg库头文件  FFmpeg格式库头文件  缩放库头文件     IEEE-1394规范摄像头库头文件  Xvid解码库头文件 x264库</span></div><div class="line">sudo apt-get install libavcodec-dev libavformat-dev   libswscale-dev libdc1394<span class="number">-22</span>-dev    x264        v4l-utils</div><div class="line"><span class="comment"># 播放器库：           Xine2的头文件   Video-For-Linux（v4l）</span></div><div class="line">sudo apt-get install libxine2-dev   libv4l-dev</div><div class="line"><span class="comment">#                    自由解码库头文件         GStreamer头文件</span></div><div class="line">sudo apt-get install libgstreamer0<span class="number">.10</span>-dev  libgstreamer-plugins-base0<span class="number">.10</span>-dev</div><div class="line"><span class="comment"># GUI库：             Qt5库头文件   GTK2库头文件</span></div><div class="line">sudo apt-get install qt5-default  libgtk2<span class="number">.0</span>-dev</div><div class="line"><span class="comment"># 运算库：             C++多核多线程库头文件   ATLAS线性代数库头文件</span></div><div class="line">sudo apt-get install libtbb-dev           libatlas-base-dev</div><div class="line"><span class="comment"># 音频库：             AAC解码库头文件   MP3库头文件       Theora库头文件  Vorbis库头文件</span></div><div class="line">sudo apt-get install libfaac-dev     libmp3lame-dev   libtheora-dev libvorbis-dev libxvidcore-dev</div><div class="line"></div><div class="line"><span class="comment"># 语音识别库：         窄域库头文件          宽域库头文件</span></div><div class="line">sudo apt-get install libopencore-amrnb-dev libopencore-amrwb-dev</div><div class="line"></div><div class="line"> </div><div class="line"><span class="comment"># Optional dependencies</span></div><div class="line"><span class="comment"># Protobuf，其实这个蛮常用的</span></div><div class="line">sudo apt-get install libprotobuf-dev protobuf-compiler</div><div class="line"><span class="comment"># Google的日志和命令行标识处理库</span></div><div class="line">sudo apt-get install libgoogle-glog-dev libgflags-dev</div><div class="line">用来访问处理各种摄像头的库头文件       C++线性代数模板库头文件  HDF5科学数据文件库头文件  API文档生成工具</div><div class="line">sudo apt-get install libgphoto2-dev libeigen3-dev         libhdf5-dev            doxygen</div></pre></td></tr></table></figure>
+
+<h3 id="3-安装python环境"><a href="#3-安装python环境" class="headerlink" title="3)安装python环境"></a><a href="#3-安装python环境" title="3)安装python环境"></a>3)安装python环境</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install python-dev python-pip python3-dev python3-pip</div><div class="line">sudo -H pip2 install -U pip numpy scipy matplotlib scikit-image scikit-learn ipython==<span class="number">5.4</span></div><div class="line">sudo -H pip3 install -U pip numpy scipy matplotlib scikit-image scikit-learn ipython</div></pre></td></tr></table></figure>
+
+<h3 id="执行完上述指令后-我们需要解决当前存在于contrib模块中的一个问题，特别是在freetype模块中，它允许您绘制UTF-8字符串。如果遇到类似于ImportError的错误：-usr-local-lib-libopencv-freetype-so-3-2：undefined-symbol：hb-shape，这个问题将解决它：注意需要更改contrib路径。"><a href="#执行完上述指令后-我们需要解决当前存在于contrib模块中的一个问题，特别是在freetype模块中，它允许您绘制UTF-8字符串。如果遇到类似于ImportError的错误：-usr-local-lib-libopencv-freetype-so-3-2：undefined-symbol：hb-shape，这个问题将解决它：注意需要更改contrib路径。" class="headerlink" title="执行完上述指令后,我们需要解决当前存在于contrib模块中的一个问题，特别是在freetype模块中，它允许您绘制UTF-8字符串。如果遇到类似于ImportError的错误：/usr/local/lib/libopencv_freetype.so.3.2：undefined symbol：hb_shape，这个问题将解决它：注意需要更改contrib路径。"></a><a href="#执行完上述指令后-我们需要解决当前存在于contrib模块中的一个问题，特别是在freetype模块中，它允许您绘制UTF-8字符串。如果遇到类似于ImportError的错误：-usr-local-lib-libopencv-freetype-so-3-2：undefined-symbol：hb-shape，这个问题将解决它：注意需要更改contrib路径。" title="执行完上述指令后,我们需要解决当前存在于contrib模块中的一个问题，特别是在freetype模块中，它允许您绘制UTF-8字符串。如果遇到类似于ImportError的错误：/usr/local/lib/libopencv_freetype.so.3.2：undefined symbol：hb_shape，这个问题将解决它：注意需要更改contrib路径。"></a>执行完上述指令后,我们需要解决当前存在于contrib模块中的一个问题，特别是在freetype模块中，它允许您绘制UTF-8字符串。如果遇到类似于ImportError的错误：/usr/local/lib/libopencv_freetype.so.3.2：undefined symbol：hb_shape，这个问题将解决它：注意需要更改contrib路径。</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sed -i <span class="string">‘s/$&#123;freetype2_LIBRARIES&#125; $&#123;harfbuzz_LIBRARIES&#125;/$&#123;FREETYPE_LIBRARIES&#125; $&#123;HARFBUZZ_LIBRARIES&#125;/g’</span> ../opencv_contrib<span class="number">-3.</span>４<span class="number">.0</span>/modules/freetype/CMakeLists.txt</div></pre></td></tr></table></figure>
+
+<h3 id="４）创建build路径"><a href="#４）创建build路径" class="headerlink" title="４）创建build路径"></a><a href="#４）创建build路径" title="４）创建build路径"></a>４）创建build路径</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">cd /data/opencv/opencv<span class="number">-3.4</span><span class="number">.0</span></div><div class="line">mkdir install</div><div class="line">mkdir build</div><div class="line">cd build</div></pre></td></tr></table></figure>
+
+<h3 id="5-运行cmake"><a href="#5-运行cmake" class="headerlink" title="5)运行cmake"></a><a href="#5-运行cmake" title="5)运行cmake"></a>5)运行cmake</h3><p>注意:CMAKE_INSTALL_PREFIX预安装路径需要更改</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 通过cmake生成完整编译配置脚本：</span></div><div class="line"><span class="comment"># 1. 构建正式RELEASE版</span></div><div class="line"><span class="comment"># 2. 编译好的库安装到/data/opencv/opencv-3.4.0/install/</span></div><div class="line"><span class="comment"># 3. 安装C的例子</span></div><div class="line"><span class="comment"># 4. 安装Python的例子</span></div><div class="line"><span class="comment"># 5. 开启TBB、V4L、Qt、OpenGL特性</span></div><div class="line"><span class="comment"># 6. 编译安装开源社区贡献库</span></div><div class="line"><span class="comment"># 7. 编译其他例子</span></div><div class="line">cmake  -D CMAKE_BUILD_TYPE=RELEASE \</div><div class="line">　     -D CMAKE_INSTALL_PREFIX=/data/opencv/opencv<span class="number">-3.4</span><span class="number">.0</span>/install/ \</div><div class="line">　　   -D INSTALL_PYTHON_EXAMPLES=ON \</div><div class="line">　　   -D INSTALL_C_EXAMPLES=ON \</div><div class="line">      -D WITH_TBB=ON \</div><div class="line">      -D WITH_V4L=ON \</div><div class="line">      -D WITH_QT=ON \</div><div class="line">      -D WITH_OPENGL=ON \</div><div class="line">　　   -D OPENCV_EXTRA_MODULES_PATH=/data/opencv/opencv_contrib<span class="number">-3.4</span><span class="number">.0</span>/modules \</div><div class="line">　　　 -D BUILD_EXAMPLES=ON ..</div></pre></td></tr></table></figure>
+
+<h3 id="6-编译安装"><a href="#6-编译安装" class="headerlink" title="6)编译安装"></a><a href="#6-编译安装" title="6)编译安装"></a>6)编译安装</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># find out number of CPU cores in your machine</span></div><div class="line">nproc</div><div class="line"><span class="comment"># substitute 4 by output of nproc</span></div><div class="line">make -j4</div><div class="line">sudo make install -j4</div></pre></td></tr></table></figure>
+
+<h2 id="2、系统配置"><a href="#2、系统配置" class="headerlink" title="2、系统配置"></a><a href="#2、系统配置" title="2、系统配置"></a>2、系统配置</h2><p>安装完成之后需要将opencv写入环境，更改为opencv3.4.0</p>
+<p>方法：$sudo gedit /etc/ld.so.conf.d/opencv.conf</p>
+<p>将<code>/usr/local/lib</code>替换为<br><code>/data/opencv/opencv-3.4.0/install/lib</code><br>使用下面的动态库管理命令ldconfig，让opencv的相关链接库被系统<br><code>$ sudo ldconfig</code><br>如果成功的话，正确的结果将会发现前面动态库的名字<br><code>$ sudo ldconfig -v &amp;gt;temp.so.txt &amp;amp;&amp;amp; cat temp.so.txt|grep opencv</code></p>
+<h3 id="指定头文件位置"><a href="#指定头文件位置" class="headerlink" title="指定头文件位置"></a><a href="#指定头文件位置" title="指定头文件位置"></a>指定头文件位置</h3><p><code>$sudo gedit /etc/profile</code><br>在文件末尾添加</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">export PKG_CONFIG_PATH=/data/opencv/opencv<span class="number">-3.4</span><span class="number">.0</span>/install/lib/ pkgconfig</div><div class="line">export LD_LIBRARY_PATH=/data/opencv/opencv<span class="number">-3.4</span><span class="number">.0</span>/install/lib</div></pre></td></tr></table></figure>
+
+<p>保存之后</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo ldconfig</div><div class="line">$ source /etc/profile</div></pre></td></tr></table></figure>
+
+<h3 id="添加python接口"><a href="#添加python接口" class="headerlink" title="添加python接口"></a><a href="#添加python接口" title="添加python接口"></a>添加python接口</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sudo ln -s /data/opencv/opencv<span class="number">-3.4</span><span class="number">.0</span>/install/lib/python2<span class="number">.7</span>/dist-packages/cv2.so /usr/local/lib/python2<span class="number">.7</span>/dist-packages</div><div class="line">sudo ln -s /data/opencv/opencv<span class="number">-3.4</span><span class="number">.0</span>/lib/python3<span class="number">.5</span>/dist-packages/cv2.cpython<span class="number">-35</span>m-x86_64-linux-gnu.so /usr/local/lib/python3<span class="number">.5</span>/dist-packages</div></pre></td></tr></table></figure>
+
+<h2 id="3、版本查看"><a href="#3、版本查看" class="headerlink" title="3、版本查看"></a><a href="#3、版本查看" title="3、版本查看"></a>3、版本查看</h2><h3 id="opencv版本查看"><a href="#opencv版本查看" class="headerlink" title="opencv版本查看"></a><a href="#opencv版本查看" title="opencv版本查看"></a>opencv版本查看</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$pkg-config –modversion opencv  </div><div class="line">$pkg-config –cflags opencv  </div><div class="line">$pkg-config –libs opencv</div></pre></td></tr></table></figure>
+
+<p>参考资料：</p>
+<p><a href="https://www.learnopencv.com/install-opencv3-on-ubuntu/" target="_blank" rel="noopener">1、Install OpenCV3 on Ubuntu</a><br><a href="https://www.jianshu.com/p/9baa48f032ca" target="_blank" rel="noopener">2、ubuntu 16.04 安装 opencv+contrib (3.2.0)</a><br><a href="http://www.samontab.com/web/2017/06/installing-opencv-3-2-0-with-contrib-modules-in-ubuntu-16-04-lts/" target="_blank" rel="noopener">3、Installing OpenCV 3.2.0 with contrib modules in Ubuntu 16.04 LTS</a><br><a href="http://blog.csdn.net/heyijia0327/article/details/54575245" target="_blank" rel="noopener">4、ubuntu 安装使用多版本opencv</a></p>
+<p><a href="http://blog.csdn.net/qq_34952119/article/details/71501652" target="_blank" rel="noopener">5、Ubuntu 多版本Opencv安装配置教程</a><br><a href="https://bruceking.site/2017/10/27/install-opencv3-on-ubuntu16/" target="_blank" rel="noopener">6、在Ubuntu 16.04安装OpenCV 3</a></p>
+<p>下面附上我的cmake编译结果：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div></pre></td><td class="code"><pre><div class="line">cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/data/opencv/opencv<span class="number">-3.4</span><span class="number">.0</span>/install/ 　-D PYTHON3_EXECUTABLE=/usr/bin/python3 　-D PYTHON_INCLUDE_DIR=/usr/include/python3<span class="number">.5</span>  　-D PYTHON_LIBRARY=/usr/lib/x86_64-linux-gnu/libpython3<span class="number">.5</span>m.so 　　-D PYTHON3_NUMPY_INCLUDE_DIRS=/usr/local/lib/python3<span class="number">.5</span>/dist-packages/numpy/core/include 　　-D INSTALL_PYTHON_EXAMPLES=ON 　　-D INSTALL_C_EXAMPLES=ON    -D WITH_TBB=ON    -D WITH_V4L=ON    -D WITH_QT=ON    -D WITH_OPENGL=ON 　　-D OPENCV_EXTRA_MODULES_PATH=/data/opencv/opencv_contrib<span class="number">-3.4</span><span class="number">.0</span>/modules 　　-D PYTHON_EXECUTABLE=/usr/lib/python3 　　-D BUILD_EXAMPLES=ON ..</div><div class="line">– Looking <span class="keyword">for</span> ccache - <span class="keyword">not</span> found</div><div class="line">– Found ZLIB: /usr/lib/x86_64-linux-gnu/libz.so (found suitable version <span class="string">“1.2.8”</span>, minimum required <span class="keyword">is</span> <span class="string">“1.2.3”</span>) </div><div class="line">– Found ZLIB: /usr/lib/x86_64-linux-gnu/libz.so (found version <span class="string">“1.2.8”</span>) </div><div class="line">– Checking <span class="keyword">for</span> module <span class="string">‘gstreamer-base-1.0’</span></div><div class="line">–   No package <span class="string">‘gstreamer-base-1.0’</span> found</div><div class="line">– Checking <span class="keyword">for</span> module <span class="string">‘gstreamer-video-1.0’</span></div><div class="line">–   No package <span class="string">‘gstreamer-video-1.0’</span> found</div><div class="line">– Checking <span class="keyword">for</span> module <span class="string">‘gstreamer-app-1.0’</span></div><div class="line">–   No package <span class="string">‘gstreamer-app-1.0’</span> found</div><div class="line">– Checking <span class="keyword">for</span> module <span class="string">‘gstreamer-riff-1.0’</span></div><div class="line">–   No package <span class="string">‘gstreamer-riff-1.0’</span> found</div><div class="line">– Checking <span class="keyword">for</span> module <span class="string">‘gstreamer-pbutils-1.0’</span></div><div class="line">–   No package <span class="string">‘gstreamer-pbutils-1.0’</span> found</div><div class="line">– Looking <span class="keyword">for</span> linux/videodev.h</div><div class="line">– Looking <span class="keyword">for</span> linux/videodev.h - <span class="keyword">not</span> found</div><div class="line">– Looking <span class="keyword">for</span> linux/videodev2.h</div><div class="line">– Looking <span class="keyword">for</span> linux/videodev2.h - found</div><div class="line">– Looking <span class="keyword">for</span> sys/videoio.h</div><div class="line">– Looking <span class="keyword">for</span> sys/videoio.h - <span class="keyword">not</span> found</div><div class="line">– Checking <span class="keyword">for</span> module <span class="string">‘libavresample’</span></div><div class="line">–   No package <span class="string">‘libavresample’</span> found</div><div class="line">– Found TBB: /usr/lib/x86_64-linux-gnu/libtbb.so</div><div class="line">– found Intel IPP (ICV version): <span class="number">2017.0</span><span class="number">.3</span> [<span class="number">2017.0</span><span class="number">.3</span>]</div><div class="line">– at: /data/opencv/opencv<span class="number">-3.4</span><span class="number">.0</span>/build/<span class="number">3</span>rdparty/ippicv/ippicv_lnx</div><div class="line">– found Intel IPP IW sources: <span class="number">2017.0</span><span class="number">.3</span></div><div class="line">– at: /data/opencv/opencv<span class="number">-3.4</span><span class="number">.0</span>/build/<span class="number">3</span>rdparty/ippicv/ippiw_lnx</div><div class="line">– CUDA detected: <span class="number">8.0</span></div><div class="line">– CUDA NVCC target flags: -gencode;arch=compute_20,code=sm_20;-gencode;arch=compute_30,code=sm_30;-gencode;arch=compute_35,code=sm_35;-gencode;arch=compute_37,code=sm_37;-gencode;arch=compute_50,code=sm_50;-gencode;arch=compute_52,code=sm_52;-gencode;arch=compute_60,code=sm_60;-gencode;arch=compute_61,code=sm_61;-D_FORCE_INLINES</div><div class="line">– LAPACK(Atlas): LAPACK_LIBRARIES: /usr/lib/liblapack.so;/usr/lib/libcblas.so;/usr/lib/libatlas.so</div><div class="line">– LAPACK(Atlas): Support <span class="keyword">is</span> enabled.</div><div class="line">– Could NOT find Pylint (missing:  PYLINT_EXECUTABLE) </div><div class="line">– VTK <span class="keyword">is</span> <span class="keyword">not</span> found. Please set -DVTK_DIR <span class="keyword">in</span> CMake to VTK build directory, <span class="keyword">or</span> to VTK install subdirectory <span class="keyword">with</span> VTKConfig.cmake file</div><div class="line">– Excluding <span class="keyword">from</span> source files list: /data/opencv/opencv<span class="number">-3.4</span><span class="number">.0</span>/build/modules/imgproc/accum.neon.cpp</div><div class="line">– </div><div class="line">– General configuration <span class="keyword">for</span> OpenCV <span class="number">3.4</span><span class="number">.0</span> =====================================</div><div class="line">–   Version control:               unknown</div><div class="line">– </div><div class="line">–   Platform:</div><div class="line">–     Timestamp:                   <span class="number">2018</span><span class="number">-01</span><span class="number">-26</span>T07:<span class="number">32</span>:<span class="number">49</span>Z</div><div class="line">–     Host:                        Linux <span class="number">4.10</span><span class="number">.1</span><span class="number">-041001</span>-generic x86_64</div><div class="line">–     CMake:                       <span class="number">3.5</span><span class="number">.1</span></div><div class="line">–     CMake generator:             Unix Makefiles</div><div class="line">–     CMake build tool:            /usr/bin/make</div><div class="line">–     Configuration:               RELEASE</div><div class="line">– </div><div class="line">–   CPU/HW features:</div><div class="line">–     Baseline:                    SSE SSE2 SSE3</div><div class="line">–       requested:                 SSE3</div><div class="line">–     Dispatched code generation:  SSE4_1 SSE4_2 FP16 AVX AVX2</div><div class="line">–       requested:                 SSE4_1 SSE4_2 AVX FP16 AVX2</div><div class="line">–       SSE4_1 (<span class="number">3</span> files):          + SSSE3 SSE4_1</div><div class="line">–       SSE4_2 (<span class="number">1</span> files):          + SSSE3 SSE4_1 POPCNT SSE4_2</div><div class="line">–       FP16 (<span class="number">2</span> files):            + SSSE3 SSE4_1 POPCNT SSE4_2 FP16 AVX</div><div class="line">–       AVX (<span class="number">5</span> files):             + SSSE3 SSE4_1 POPCNT SSE4_2 AVX</div><div class="line">–       AVX2 (<span class="number">9</span> files):            + SSSE3 SSE4_1 POPCNT SSE4_2 FP16 FMA3 AVX AVX2</div><div class="line">– </div><div class="line">–   C/C++:</div><div class="line">–     Built as dynamic libs?:      YES</div><div class="line">–     C++ Compiler:                /usr/bin/c++  (ver <span class="number">5.4</span><span class="number">.0</span>)</div><div class="line">–     C++ flags (Release):         -fsigned-char -W -Wall -Werror=<span class="keyword">return</span>-type -Werror=non-virtual-dtor -Werror=address -Werror=sequence-point -Wformat -Werror=format-security -Wmissing-declarations -Wundef -Winit-self -Wpointer-arith -Wshadow -Wsign-promo -Wuninitialized -Winit-self -Wno-narrowing -Wno-delete-non-virtual-dtor -Wno-comment -fdiagnostics-show-option -Wno-long-long -pthread -fomit-frame-pointer -ffunction-sections -fdata-sections  -msse -msse2 -msse3 -fvisibility=hidden -fvisibility-inlines-hidden -O3 -DNDEBUG  -DNDEBUG</div><div class="line">–     C++ flags (Debug):           -fsigned-char -W -Wall -Werror=<span class="keyword">return</span>-type -Werror=non-virtual-dtor -Werror=address -Werror=sequence-point -Wformat -Werror=format-security -Wmissing-declarations -Wundef -Winit-self -Wpointer-arith -Wshadow -Wsign-promo -Wuninitialized -Winit-self -Wno-narrowing -Wno-delete-non-virtual-dtor -Wno-comment -fdiagnostics-show-option -Wno-long-long -pthread -fomit-frame-pointer -ffunction-sections -fdata-sections  -msse -msse2 -msse3 -fvisibility=hidden -fvisibility-inlines-hidden -g  -O0 -DDEBUG -D_DEBUG</div><div class="line">–     C Compiler:                  /usr/bin/cc</div><div class="line">–     C flags (Release):           -fsigned-char -W -Wall -Werror=<span class="keyword">return</span>-type -Werror=non-virtual-dtor -Werror=address -Werror=sequence-point -Wformat -Werror=format-security -Wmissing-declarations -Wmissing-prototypes -Wstrict-prototypes -Wundef -Winit-self -Wpointer-arith -Wshadow -Wuninitialized -Winit-self -Wno-narrowing -Wno-comment -fdiagnostics-show-option -Wno-long-long -pthread -fomit-frame-pointer -ffunction-sections -fdata-sections  -msse -msse2 -msse3 -fvisibility=hidden -O3 -DNDEBUG  -DNDEBUG</div><div class="line">–     C flags (Debug):             -fsigned-char -W -Wall -Werror=<span class="keyword">return</span>-type -Werror=non-virtual-dtor -Werror=address -Werror=sequence-point -Wformat -Werror=format-security -Wmissing-declarations -Wmissing-prototypes -Wstrict-prototypes -Wundef -Winit-self -Wpointer-arith -Wshadow -Wuninitialized -Winit-self -Wno-narrowing -Wno-comment -fdiagnostics-show-option -Wno-long-long -pthread -fomit-frame-pointer -ffunction-sections -fdata-sections  -msse -msse2 -msse3 -fvisibility=hidden -g  -O0 -DDEBUG -D_DEBUG</div><div class="line">–     Linker flags (Release):</div><div class="line">–     Linker flags (Debug):</div><div class="line">–     ccache:                      NO</div><div class="line">–     Precompiled headers:         YES</div><div class="line">–     Extra dependencies:          dl m pthread rt /usr/lib/x86_64-linux-gnu/libGLU.so /usr/lib/x86_64-linux-gnu/libGL.so /usr/lib/x86_64-linux-gnu/libtbb.so cudart nppc nppial nppicc nppicom nppidei nppif nppig nppim nppist nppisu nppitc npps cublas cufft -L/usr/local/cuda<span class="number">-8.0</span>/lib64</div><div class="line">–     <span class="number">3</span>rdparty dependencies:</div><div class="line">– </div><div class="line">–   OpenCV modules:</div><div class="line">–     To be built:                 calib3d core cudaarithm cudabgsegm cudacodec cudafeatures2d cudafilters cudaimgproc cudalegacy cudaobjdetect cudaoptflow cudastereo cudawarping cudev dnn features2d flann highgui imgcodecs imgproc ml objdetect photo python2 python3 python_bindings_generator shape stitching superres ts video videoio videostab</div><div class="line">–     Disabled:                    js world</div><div class="line">–     Disabled by dependency:      -</div><div class="line">–     Unavailable:                 java viz</div><div class="line">–     Applications:                tests perf_tests apps</div><div class="line">–     Documentation:               YES (/usr/bin/doxygen <span class="number">1.8</span><span class="number">.11</span>)</div><div class="line">–     Non-free algorithms:         NO</div><div class="line">– </div><div class="line">–   GUI: </div><div class="line">–     QT:                          YES (ver <span class="number">5.5</span><span class="number">.1</span>)</div><div class="line">–       QT OpenGL support:         YES (Qt5::OpenGL <span class="number">5.5</span><span class="number">.1</span>)</div><div class="line">–     GTK+:                        NO</div><div class="line">–     OpenGL support:              YES (/usr/lib/x86_64-linux-gnu/libGLU.so /usr/lib/x86_64-linux-gnu/libGL.so)</div><div class="line">–     VTK support:                 NO</div><div class="line">– </div><div class="line">–   Media I/O: </div><div class="line">–     ZLib:                        /usr/lib/x86_64-linux-gnu/libz.so (ver <span class="number">1.2</span><span class="number">.8</span>)</div><div class="line">–     JPEG:                        /usr/lib/x86_64-linux-gnu/libjpeg.so (ver )</div><div class="line">–     WEBP:                        build (ver encoder: <span class="number">0x020e</span>)</div><div class="line">–     PNG:                         /usr/lib/x86_64-linux-gnu/libpng.so (ver <span class="number">1.2</span><span class="number">.54</span>)</div><div class="line">–     TIFF:                        /usr/lib/x86_64-linux-gnu/libtiff.so (ver <span class="number">42</span> / <span class="number">4.0</span><span class="number">.6</span>)</div><div class="line">–     JPEG <span class="number">2000</span>:                   /usr/lib/x86_64-linux-gnu/libjasper.so (ver <span class="number">1.900</span><span class="number">.1</span>)</div><div class="line">–     OpenEXR:                     build (ver <span class="number">1.7</span><span class="number">.1</span>)</div><div class="line">– </div><div class="line">–   Video I/O:</div><div class="line">–     DC1394:                      YES (ver <span class="number">2.2</span><span class="number">.4</span>)</div><div class="line">–     FFMPEG:                      YES</div><div class="line">–       avcodec:                   YES (ver <span class="number">56.60</span><span class="number">.100</span>)</div><div class="line">–       avformat:                  YES (ver <span class="number">56.40</span><span class="number">.101</span>)</div><div class="line">–       avutil:                    YES (ver <span class="number">54.31</span><span class="number">.100</span>)</div><div class="line">–       swscale:                   YES (ver <span class="number">3.1</span><span class="number">.101</span>)</div><div class="line">–       avresample:                NO</div><div class="line">–     GStreamer:                   </div><div class="line">–       base:                      YES (ver <span class="number">0.10</span><span class="number">.36</span>)</div><div class="line">–       video:                     YES (ver <span class="number">0.10</span><span class="number">.36</span>)</div><div class="line">–       app:                       YES (ver <span class="number">0.10</span><span class="number">.36</span>)</div><div class="line">–       riff:                      YES (ver <span class="number">0.10</span><span class="number">.36</span>)</div><div class="line">–       pbutils:                   YES (ver <span class="number">0.10</span><span class="number">.36</span>)</div><div class="line">–     libv4l/libv4l2:              NO</div><div class="line">–     v4l/v4l2:                    linux/videodev2.h</div><div class="line">–     gPhoto2:                     YES</div><div class="line">– </div><div class="line">–   Parallel framework:            TBB (ver <span class="number">4.4</span> interface <span class="number">9002</span>)</div><div class="line">– </div><div class="line">–   Trace:                         YES (<span class="keyword">with</span> Intel ITT)</div><div class="line">– </div><div class="line">–   Other third-party libraries:</div><div class="line">–     Intel IPP:                   <span class="number">2017.0</span><span class="number">.3</span> [<span class="number">2017.0</span><span class="number">.3</span>]</div><div class="line">–            at:                   /data/opencv/opencv<span class="number">-3.4</span><span class="number">.0</span>/build/<span class="number">3</span>rdparty/ippicv/ippicv_lnx</div><div class="line">–     Intel IPP IW:                sources (<span class="number">2017.0</span><span class="number">.3</span>)</div><div class="line">–               at:                /data/opencv/opencv<span class="number">-3.4</span><span class="number">.0</span>/build/<span class="number">3</span>rdparty/ippicv/ippiw_lnx</div><div class="line">–     Lapack:                      YES (/usr/lib/liblapack.so /usr/lib/libcblas.so /usr/lib/libatlas.so)</div><div class="line">–     Eigen:                       YES (ver <span class="number">3.2</span><span class="number">.92</span>)</div><div class="line">–     Custom HAL:                  NO</div><div class="line">– </div><div class="line">–   NVIDIA CUDA:                   YES (ver <span class="number">8.0</span>, CUFFT CUBLAS)</div><div class="line">–     NVIDIA GPU arch:             <span class="number">20</span> <span class="number">30</span> <span class="number">35</span> <span class="number">37</span> <span class="number">50</span> <span class="number">52</span> <span class="number">60</span> <span class="number">61</span></div><div class="line">–     NVIDIA PTX archs:</div><div class="line">– </div><div class="line">–   OpenCL:                        YES (no extra features)</div><div class="line">–     Include path:                /data/opencv/opencv<span class="number">-3.4</span><span class="number">.0</span>/<span class="number">3</span>rdparty/include/opencl/<span class="number">1.2</span></div><div class="line">–     Link libraries:              Dynamic load</div><div class="line">– </div><div class="line">–   Python <span class="number">2</span>:</div><div class="line">–     Interpreter:                 /usr/bin/python2<span class="number">.7</span> (ver <span class="number">2.7</span><span class="number">.12</span>)</div><div class="line">–     Libraries:                   /usr/lib/x86_64-linux-gnu/libpython2<span class="number">.7</span>.so (ver <span class="number">2.7</span><span class="number">.12</span>)</div><div class="line">–     numpy:                       /usr/local/lib/python2<span class="number">.7</span>/dist-packages/numpy/core/include (ver <span class="number">1.13</span><span class="number">.1</span>)</div><div class="line">–     packages path:               lib/python2<span class="number">.7</span>/dist-packages</div><div class="line">– </div><div class="line">–   Python <span class="number">3</span>:</div><div class="line">–     Interpreter:                 /usr/bin/python3 (ver <span class="number">3.5</span><span class="number">.2</span>)</div><div class="line">–     Libraries:                   /usr/lib/x86_64-linux-gnu/libpython3<span class="number">.5</span>m.so (ver <span class="number">3.5</span><span class="number">.2</span>)</div><div class="line">–     numpy:                       /usr/lib/python3/dist-packages/numpy/core/include (ver <span class="number">1.11</span><span class="number">.0</span>)</div><div class="line">–     packages path:               lib/python3<span class="number">.5</span>/dist-packages</div><div class="line">– </div><div class="line">–   Python (<span class="keyword">for</span> build):            /usr/bin/python2<span class="number">.7</span></div><div class="line">– </div><div class="line">–   Java:</div><div class="line">–     ant:                         NO</div><div class="line">–     JNI:                         /usr/lib/jvm/java<span class="number">-8</span>-oracle/include /usr/lib/jvm/java<span class="number">-8</span>-oracle/include/linux /usr/lib/jvm/java<span class="number">-8</span>-oracle/include</div><div class="line">–     Java wrappers:               NO</div><div class="line">–     Java tests:                  NO</div><div class="line">– </div><div class="line">–   Matlab:                        YES</div><div class="line">–     mex:                         /usr/local/MATLAB/R2015b/bin/mex</div><div class="line">–     Compiler/generator:          Not working (bindings will <span class="keyword">not</span> be generated)</div><div class="line">– </div><div class="line">–   Install to:                    /data/opencv/opencv<span class="number">-3.4</span><span class="number">.0</span>/install</div><div class="line">– —————————————————————–</div><div class="line">– </div><div class="line">– Configuring done</div><div class="line">– Generating done</div><div class="line">– Build files have been written to: /data/opencv/opencv<span class="number">-3.4</span><span class="number">.0</span>/build</div></pre></td></tr></table></figure>
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2018/01/20/Ubuntu16-04安装多版本Opencv/">Ubuntu16.04安装多版本Opencv</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">SunshineDxiao</a></p>
+        <p><span>文章字数:</span>2,702</p>
+        <p><span>发布时间:</span>2018-01-20, 09:23:13</p>
+        <p><span>最后更新:</span>2018-05-30, 22:04:07</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2018/01/20/Ubuntu16-04安装多版本Opencv/" title="Ubuntu16.04安装多版本Opencv">http://www.douxiao.org/2018/01/20/Ubuntu16-04安装多版本Opencv/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://www.douxiao.org/2018/01/20/Ubuntu16-04安装多版本Opencv/　　作者: SunshineDxiao" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2018/02/26/TCP和UDP之间的区别/">
+                    TCP和UDP之间的区别
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2017/12/26/python环境配置/">
+                    python环境配置
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一、opencv3-4的一些特性（和opencv3-2比较）"><span class="toc-number">1.</span> <span class="toc-text">一、opencv3.4的一些特性（和opencv3.2比较）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二、下载opencv3-4"><span class="toc-number">2.</span> <span class="toc-text">二、下载opencv3.4</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#三、安装步骤"><span class="toc-number">3.</span> <span class="toc-text">三、安装步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、Update-packages"><span class="toc-number">3.1.</span> <span class="toc-text">1、Update packages</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、Install-OS-libraries"><span class="toc-number">3.2.</span> <span class="toc-text">2、Install OS libraries</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-删除先前安装-x264"><span class="toc-number">3.2.1.</span> <span class="toc-text">1)删除先前安装 x264</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-安装依赖"><span class="toc-number">3.2.2.</span> <span class="toc-text">2)安装依赖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-安装python环境"><span class="toc-number">3.2.3.</span> <span class="toc-text">3)安装python环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#执行完上述指令后-我们需要解决当前存在于contrib模块中的一个问题，特别是在freetype模块中，它允许您绘制UTF-8字符串。如果遇到类似于ImportError的错误：-usr-local-lib-libopencv-freetype-so-3-2：undefined-symbol：hb-shape，这个问题将解决它：注意需要更改contrib路径。"><span class="toc-number">3.2.4.</span> <span class="toc-text">执行完上述指令后,我们需要解决当前存在于contrib模块中的一个问题，特别是在freetype模块中，它允许您绘制UTF-8字符串。如果遇到类似于ImportError的错误：/usr/local/lib/libopencv_freetype.so.3.2：undefined symbol：hb_shape，这个问题将解决它：注意需要更改contrib路径。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#４）创建build路径"><span class="toc-number">3.2.5.</span> <span class="toc-text">４）创建build路径</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-运行cmake"><span class="toc-number">3.2.6.</span> <span class="toc-text">5)运行cmake</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-编译安装"><span class="toc-number">3.2.7.</span> <span class="toc-text">6)编译安装</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、系统配置"><span class="toc-number">3.3.</span> <span class="toc-text">2、系统配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#指定头文件位置"><span class="toc-number">3.3.1.</span> <span class="toc-text">指定头文件位置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#添加python接口"><span class="toc-number">3.3.2.</span> <span class="toc-text">添加python接口</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3、版本查看"><span class="toc-number">3.4.</span> <span class="toc-text">3、版本查看</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#opencv版本查看"><span class="toc-number">3.4.1.</span> <span class="toc-text">opencv版本查看</span></a></li></ol></li></ol></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"Ubuntu16.04安装多版本Opencv　| SunshineDxiao's Blog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+   
+     <section  class="livere" id="comments">
+   <script type="text/javascript">
+     (function(d, s) {
+         var j, e = d.getElementsByTagName(s)[0];
+         if (typeof LivereTower === 'function') { return; }
+         j = d.createElement(s);
+         j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+         j.async = true;
+         e.parentNode.insertBefore(j, e);
+        })(document, 'script');
+	</script>
+    
+    <script> loadComment(); </script>
+
+    <div id="lv-container" data-id="city" data-uid="MTAyMC8zMTAyMi83NTcx"></div>
+</section>
+
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2018/02/26/TCP和UDP之间的区别/" title="上一篇: TCP和UDP之间的区别">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2017/12/26/python环境配置/" title="下一篇: python环境配置">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/05/30/YOLO-v3论文阅读笔记/">YOLO-v3论文阅读笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/30/YOLO-v2论文阅读笔记/">YOLO-v2论文阅读笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/30/YOLO-v1论文阅读笔记/">YOLO-v1论文阅读笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/14/SSD物体检测论文阅读笔记/">深度学习——SSD论文阅读笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/10/CNN卷积神经网络解读/">深度学习——CNN卷积神经网络</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/12/用pyqt5构建人脸识别界面/">用pyqt5构建人脸识别界面</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/26/TCP和UDP之间的区别/">TCP和UDP之间的区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/20/Ubuntu16-04安装多版本Opencv/">Ubuntu16.04安装多版本Opencv</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/26/python环境配置/">python环境配置</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/20/Ubuntu软件创建图标/">Ubuntu软件创建图标</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/19/tfmodel-Object-Detection-API学习笔记/">tfmodel_Object_Detection_API学习笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/04/TensorflowPython代码学习笔记/">TensorflowPython代码学习笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/30/surface及surfaceview使用总结/">surface及surfaceview使用总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/26/Nvidia-TX1刷机教程/">Nvidia-TX1刷机教程</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/13/让ubuntu下的eclipse支GBK编码/">让ubuntu下的eclipse支GBK编码</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/13/DeepLearning-ai课程——改善深度神经网络/">深度学习——改善深度神经网络</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/12/深度学习——神经网络和深度学习/">DeepLearning.ai课程——神经网络和深度学习</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/26/AKJ-UAV-APP调试问题及解决办法/">AKJ_UAV_APP调试问题及解决办法</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/23/搭建Hexo-github博客-1/">搭建Hexo+github博客(二)</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/23/搭建Hexo-github博客/">搭建Hexo+github博客(一)</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/23/深度学习—优化神经网络/">深度学习—优化神经网络</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/23/深度学习—构建机器学习工程/">深度学习——构建机器学习工程</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/23/我的博客之路/">我的博客之路</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/23/天才在左，疯子在右/">天才在左，疯子在右</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/23/Python-Numpy学习/">Python-Numpy学习</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/23/深度学习—正则化/">深度学习—正则化</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2017-2018 SunshineDxiao
+            </div>
+            <div class="footer-right">
+                <font color=green> 小伙子，加油！你渴望的一定不是平凡之路！</font>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="本站访量"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="本文热度"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span></span><span>°C</span>
+                    </span>
+                    <span>| </span>
+                    <span title="总量不多啊，继续努力！">
+	                    <span><i class="fa fa-bar-chart-o" aria-hidden="true"></i></span>
+                    <span class="post-count"><b>31.7k</b></span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+<!--页面点击小红心-->
+<script type="text/javascript" src="/js/love.js"></script>
+
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 10;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-106881307-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+    <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+             title: "a.article-title, .article-more-link a", 
+             post: ".article-entry a[href], .copyright a[href]", 
+            
+             categories: ".article-category a, a.tag-list-link", 
+            
+            
+            
+            
+            
+            
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+    <script>
+        var originTitle = document.title;
+        var titleTime;
+        document.addEventListener("visibilitychange", function() {
+            if (document.hidden) {
+                document.title = "(つェ⊂) 我藏好了哦~ " + originTitle;
+                clearTimeout(titleTime);
+            }
+            else {
+                document.title = "(*´∇｀*) 被你发现啦~ " + originTitle;
+                titleTime = setTimeout(function() {
+                    document.title = originTitle;
+                }, 2000);
+            }
+        })
+    </script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>

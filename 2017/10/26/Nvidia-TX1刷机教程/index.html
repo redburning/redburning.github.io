@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="SunshineDxiao" />
+
+
+
+<meta name="description" content="这篇博客是总结这几天Nvidia Tx1开发板的刷机血泪史，总结遇到的一些问题及解决办法，之所以艰难是因为实验室的网络太差，还有最近十九大的召开，国内所有的vpn都被禁了，下载某些安装包是很困难的，没法google，百度有些问题的解决办法是无法找到的,不过也参考了一些前辈的教程。不过值得庆幸的事，最终还是刷机成功了，写一篇博文来纪念一下。">
+<meta name="keywords" content="Nvidia-Tx1,嵌入式GPU">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Nvidia-TX1刷机教程">
+<meta property="og:url" content="http://www.douxiao.org/2017/10/26/Nvidia-TX1刷机教程/index.html">
+<meta property="og:site_name" content="SunshineDxiao&#39;s Blog">
+<meta property="og:description" content="这篇博客是总结这几天Nvidia Tx1开发板的刷机血泪史，总结遇到的一些问题及解决办法，之所以艰难是因为实验室的网络太差，还有最近十九大的召开，国内所有的vpn都被禁了，下载某些安装包是很困难的，没法google，百度有些问题的解决办法是无法找到的,不过也参考了一些前辈的教程。不过值得庆幸的事，最终还是刷机成功了，写一篇博文来纪念一下。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://ow7va355d.bkt.clouddn.com/4.png">
+<meta property="og:image" content="http://ow7va355d.bkt.clouddn.com/Jetpack_install3.png">
+<meta property="og:image" content="http://ow7va355d.bkt.clouddn.com/Jetpack_install4.png">
+<meta property="og:image" content="http://ow7va355d.bkt.clouddn.com/10.png">
+<meta property="og:image" content="http://ow7va355d.bkt.clouddn.com/11.png">
+<meta property="og:image" content="http://ow7va355d.bkt.clouddn.com/12.png">
+<meta property="og:image" content="http://ow7va355d.bkt.clouddn.com/13.png">
+<meta property="og:image" content="http://ow7va355d.bkt.clouddn.com/14.png">
+<meta property="og:image" content="http://ow7va355d.bkt.clouddn.com/Jetpack_install4.png">
+<meta property="og:image" content="http://ow7va355d.bkt.clouddn.com/IPinstall.png">
+<meta property="og:updated_time" content="2018-05-30T14:04:07.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Nvidia-TX1刷机教程">
+<meta name="twitter:description" content="这篇博客是总结这几天Nvidia Tx1开发板的刷机血泪史，总结遇到的一些问题及解决办法，之所以艰难是因为实验室的网络太差，还有最近十九大的召开，国内所有的vpn都被禁了，下载某些安装包是很困难的，没法google，百度有些问题的解决办法是无法找到的,不过也参考了一些前辈的教程。不过值得庆幸的事，最终还是刷机成功了，写一篇博文来纪念一下。">
+<meta name="twitter:image" content="http://ow7va355d.bkt.clouddn.com/4.png">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="SunshineDxiao&#39;s Blog" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/img/dx.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>Nvidia-TX1刷机教程 | SunshineDxiao&#39;s Blog</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
+    <script>
+        yiliaConfig.jquery_ui = [true, "//cdn.bootcss.com/jqueryui/1.10.4/jquery-ui.min.js", "//cdn.bootcss.com/jqueryui/1.10.4/css/jquery-ui.min.css"];
+    </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?356d919e4fff7056e9f7a5bb0d653b87";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/dx.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">SunshineDxiao</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">一个有情怀的攻城狮，将搬砖进行到底！</p>
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="true" />
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class='no-result'>No results found <i class='fa fa-spinner fa-pulse'></i></p>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/随笔">随笔</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="https://mail.google.com/mail/u/0/#inbox" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="https://github.com/douxiao" title="GitHub"></a>
+                            
+                                <a class="fa RSS" href="/atom.xml" title="RSS"></a>
+                            
+                                <a class="fa 简书" href="http://www.jianshu.com/users/9051ab9206e9/timeline" title="简书"></a>
+                            
+                                <a class="fa CSDN" href="http://blog.csdn.net/u010987458" title="CSDN"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Andrew-NG/">Andrew NG</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CNN/">CNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DeepLearning/">DeepLearning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GBK编码/">GBK编码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nvidia-Tx1/">Nvidia-Tx1</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SSD/">SSD</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP/">TCP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UDP/">UDP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/">android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/desktop/">desktop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dlib/">dlib</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eclipse/">eclipse</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/env/">env</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/numpy/">numpy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/object-detection/">object-detection</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/opencv/">opencv</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pyqt5/">pyqt5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tensorflow/">tensorflow</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tfmodel/">tfmodel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/">ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yolo/">yolo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/嵌入式GPU/">嵌入式GPU</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/总结/">总结</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/感悟/">感悟</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/目标检测/">目标检测</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/神经网络/">神经网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://weibo.com/u/5206628908/home?leftnav=1">Weibo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://github.com/kuailexiaoxiao">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://www.facebook.com/dou.xiao.739">FaceBook</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://www.kaggle.com/douxiao">Kaggle</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">Reading Thinking Coding</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">SunshineDxiao</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/dx.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">SunshineDxiao</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">一个有情怀的攻城狮，将搬砖进行到底！</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/随笔">随笔</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="https://mail.google.com/mail/u/0/#inbox" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/douxiao" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                                <a class="fa 简书" target="_blank" href="http://www.jianshu.com/users/9051ab9206e9/timeline" title="简书"></a>
+                            
+                                <a class="fa CSDN" target="_blank" href="http://blog.csdn.net/u010987458" title="CSDN"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-Nvidia-TX1刷机教程" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/10/26/Nvidia-TX1刷机教程/" class="article-date">
+      <time datetime="2017-10-26T00:30:16.000Z" itemprop="datePublished">2017-10-26</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Nvidia-TX1刷机教程
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/工作/">工作</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Nvidia-Tx1/">Nvidia-Tx1</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/嵌入式GPU/">嵌入式GPU</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>　　这篇博客是总结这几天Nvidia Tx1开发板的刷机血泪史，总结遇到的一些问题及解决办法，之所以艰难是因为实验室的网络太差，还有最近十九大的召开，国内所有的vpn都被禁了，下载某些安装包是很困难的，没法google，百度有些问题的解决办法是无法找到的,不过也参考了一些前辈的教程。不过值得庆幸的事，最终还是刷机成功了，写一篇博文来纪念一下。<br><a id="more"></a></p>
+<h1 id="一、开箱检查，并安装系统"><a href="#一、开箱检查，并安装系统" class="headerlink" title="一、开箱检查，并安装系统"></a>一、开箱检查，并安装系统</h1><p>　　开发板连接好AC电源线，<strong>使用HDMI线连接显示器</strong>，自己在这里踩坑了，因为开始用的hdmi转vga，显示器怎么都不显示，用HDMI直连显示器就可以了，开始我的板子会进入命令行界面，开始还没有安装系统，所以没有桌面，需要运行下安装。<br>　　然后登录系统，用户名和密码都是”ubuntu“，登陆后，系统会提示安装驱动以显示正常的图像界面。按照要求进行操作，3步以后驱动就安好了，然后sudo reboot重启系统，就可以进入ubuntu 14.04系统界面。终端输入sudo lshw就可以查看系统硬件信息，基本可以确定开发板的完好。<br>　　<font color="red">注意:开始这里必须用hdmi线直连显示器。</font></p>
+<h1 id="二、刷机准备，下载安装JetPack3-1"><a href="#二、刷机准备，下载安装JetPack3-1" class="headerlink" title="二、刷机准备，下载安装JetPack3.1"></a>二、刷机准备，下载安装JetPack3.1</h1><p>　  开发板安装软件的一个方式是使用JetPack,Jetson TX1出厂时默认的系统以及附加包都比较老旧,没有安装cuda,nvcc,opencv等，部署最新的开发包可以充分利用硬件性能，有利于我们进行深度学习开发。Jetpack3.1是Nvidia提供的最新开发包，包含64bit的Ubuntu16.04操作系统，CUDA 8.0，cuDNN 6.0等。类似于刷安卓手机，我们需要在一台装有ubuntu14.04或16.04的电脑上为开发板更新固件。</p>
+<h2 id="第一步："><a href="#第一步：" class="headerlink" title="第一步："></a>第一步：</h2><p>　　　下载JetPack3.1，需要注册英伟达开发者账号，<a href="https://developer.nvidia.com/embedded/jetpack" target="_blank" rel="noopener">官网链接</a>，<a href="https://developer.nvidia.com/embedded/downloads" target="_blank" rel="noopener">JetPack Download  center</a>。<br>   <img src="http://ow7va355d.bkt.clouddn.com/4.png" alt=""></p>
+<h2 id="第二步："><a href="#第二步：" class="headerlink" title="第二步："></a>第二步：</h2><p>　　　安装JetPack3.1，因为安装需要大概10G左右的空间，所以我没有放在系统的那个盘安装。加入我放在data盘中。<br>   <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd /data</span><br><span class="line">mkdir NvidiaTx1 //然后把下载的文件拷贝到该文件夹的目录下面。</span><br><span class="line">cd NvidiaTx1</span><br><span class="line">./JetPack-L4T<span class="number">-3.1</span>-linux-x64.run</span><br></pre></td></tr></table></figure></p>
+<p>　　这里会进入安装界面，点next,选择TX1,会进入到下面那个界面，因为实验室网络经常抽风，经常会在下面那个界面卡死报错，解决办法重复进几次，自己有一次尝试打开vpn居然就能用，还有把4G网共享给电脑，总之试了很多办法。如果运气好的话，会很顺利完成的。</p>
+<p>  <img src="http://ow7va355d.bkt.clouddn.com/Jetpack_install3.png" alt=""></p>
+<p>　　应该是下面的这个效果，当然自己写教程前已经安装好了，所以在主机部分显示的是no action,正常的应该显示install版本，接下来的下载将是一个漫长的，不断失败的过程，我也搞不懂为什么反正有种绝望想放弃的感觉。</p>
+<p>  <img src="http://ow7va355d.bkt.clouddn.com/Jetpack_install4.png" alt=""><br>　　<br>　　好了点了next,就去忙别的吧，当然下载错误还是那些办法，重新开始，换网。。。。。。<br>　　经过了漫长的等待下载完成。</p>
+<h2 id="第三步："><a href="#第三步：" class="headerlink" title="第三步："></a>第三步：</h2><p>　　安装：全部下载完后，开始了每一项的安装，此时可能会报出cuda安装失败的错误，此时查看日志文件，多半能找到答案。我的做法是打开终端，运行<code>sudo apt-get -f install</code>命令，补全依赖项，然后就可以顺利安装。</p>
+<h1 id="三、开始刷机"><a href="#三、开始刷机" class="headerlink" title="三、开始刷机"></a>三、开始刷机</h1><p>　　刚才开发板所需组件全部下载并安装后，就可以准备刷机了。</p>
+<h2 id="第一步：配置网络"><a href="#第一步：配置网络" class="headerlink" title="第一步：配置网络"></a>第一步：配置网络</h2><p>　　开发板刷机过程中需要全程联网，那么官方推荐的做法就是把电脑与开发板用网线连在同一个路由器下，至于无线连接行不行我没试过，不过为了保证稳定，建议使用网线。那么在弹出的network layout配置中选择路由连接；在network interface中选择以太网端口，不认识的话就用默认选项。<br>  <img src="http://ow7va355d.bkt.clouddn.com/10.png" alt=""><br>  <img src="http://ow7va355d.bkt.clouddn.com/11.png" alt=""><br>  <img src="http://ow7va355d.bkt.clouddn.com/12.png" alt=""><br>  <img src="http://ow7va355d.bkt.clouddn.com/13.png" alt=""></p>
+<h2 id="第二步、开发板连接到电脑，开始刷机"><a href="#第二步、开发板连接到电脑，开始刷机" class="headerlink" title="第二步、开发板连接到电脑，开始刷机"></a>第二步、开发板连接到电脑，开始刷机</h2><p>　1.断开电源，保证开发板处于断电关机状态。<br>　2.用网线连到路由器上，也可插上鼠标键盘。<br>　3.用Micro USB线把开发板连到电脑上（类似于安卓手机连电脑）接通AC电　源，按下power键，开机。<br>　4.长按rec键不松开，然后点按一下reset键(这里会看到灯闪一下)，过2s以后，才松开rec键，此时开发板处于强制恢复模式。</p>
+<p>　　完成以上步骤后，我们还要检查开发板有没有和电脑正确连接，终端输入lsusb 命令，可以看到一些列表，只要发现其中有Nvidia Corp就说明连接正确。<br>　　以上步骤确认无误后，在post installation界面中敲一下enter，就开始了刷机过程。<br>　　<font color="red"> <strong>注意在这里自己遇到一个错误。Making   　　　system.img…<br>　　　rm: cannot remove ‘mnt’: Device or resource busy<br>　　　clearing ext4 mount point failed.</strong></font><br>　　这里需要手动清楚 /mnt文件及目录。<a href="https://devtalk.nvidia.com/default/topic/1021063/jetson-tx2/failed-to-flash-device/post/5197174/" target="_blank" rel="noopener">解决办法链接</a>。</p>
+<p>　　好了下面可以进行正常刷机了。</p>
+<p>  <img src="http://ow7va355d.bkt.clouddn.com/14.png" alt=""><br>　　<br>　　刷机过程中，会出现提示确认GUI桌面是否安装好，此时用HDMI线缆连到显示器上，如果显示ubuntu桌面，说明系统安装好了，按照提示完成后续安装，这将是一个持续几十分钟的过程。完全安好后，退出Jetpack软件即可。<br><strong>　　自己这里遇到的问题是检测不到tx1的IP。只能退出，下面讲解怎样使用JetPack仅安装组件。，如果这个过程很慢而且出错的话那只能手动安装cuda ,openv 等组件了。</strong></p>
+<h1 id="四、JetPack仅安装组件"><a href="#四、JetPack仅安装组件" class="headerlink" title="四、JetPack仅安装组件"></a>四、JetPack仅安装组件</h1><p>　　这就得提到Jetpack的另一个特性：可以不必刷机，单独为Jetson设备安装任何组件。方法其实很简单： </p>
+<p>  　<img src="http://ow7va355d.bkt.clouddn.com/Jetpack_install4.png" alt=""></p>
+<p>   类似上图，把FileSystem and OS、Drivers、Flash OS image to Target这些关于系统的组件通通置为no action，然后选择需要补充安装的组件，注意它们的依赖关系。选择完毕就点next，会出现如下界面，需要填上Tx1的IP： </p>
+<p> <img src="http://ow7va355d.bkt.clouddn.com/IPinstall.png" alt=""></p>
+<p>   就可以开始安装了。这里使用的是SSH远程服务，根本不用数据线，等待一会就安装好了，注意安装过程中尽量不要操作开发板。</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2017/10/26/Nvidia-TX1刷机教程/">Nvidia-TX1刷机教程</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">SunshineDxiao</a></p>
+        <p><span>文章字数:</span>1,666</p>
+        <p><span>发布时间:</span>2017-10-26, 08:30:16</p>
+        <p><span>最后更新:</span>2018-05-30, 22:04:07</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2017/10/26/Nvidia-TX1刷机教程/" title="Nvidia-TX1刷机教程">http://www.douxiao.org/2017/10/26/Nvidia-TX1刷机教程/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://www.douxiao.org/2017/10/26/Nvidia-TX1刷机教程/　　作者: SunshineDxiao" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2017/10/30/surface及surfaceview使用总结/">
+                    surface及surfaceview使用总结
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2017/10/13/让ubuntu下的eclipse支GBK编码/">
+                    让ubuntu下的eclipse支GBK编码
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一、开箱检查，并安装系统"><span class="toc-number">1.</span> <span class="toc-text">一、开箱检查，并安装系统</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二、刷机准备，下载安装JetPack3-1"><span class="toc-number">2.</span> <span class="toc-text">二、刷机准备，下载安装JetPack3.1</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#第一步："><span class="toc-number">2.1.</span> <span class="toc-text">第一步：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第二步："><span class="toc-number">2.2.</span> <span class="toc-text">第二步：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第三步："><span class="toc-number">2.3.</span> <span class="toc-text">第三步：</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#三、开始刷机"><span class="toc-number">3.</span> <span class="toc-text">三、开始刷机</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#第一步：配置网络"><span class="toc-number">3.1.</span> <span class="toc-text">第一步：配置网络</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第二步、开发板连接到电脑，开始刷机"><span class="toc-number">3.2.</span> <span class="toc-text">第二步、开发板连接到电脑，开始刷机</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#四、JetPack仅安装组件"><span class="toc-number">4.</span> <span class="toc-text">四、JetPack仅安装组件</span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"Nvidia-TX1刷机教程　| SunshineDxiao's Blog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+   
+     <section  class="livere" id="comments">
+   <script type="text/javascript">
+     (function(d, s) {
+         var j, e = d.getElementsByTagName(s)[0];
+         if (typeof LivereTower === 'function') { return; }
+         j = d.createElement(s);
+         j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+         j.async = true;
+         e.parentNode.insertBefore(j, e);
+        })(document, 'script');
+	</script>
+    
+    <script> loadComment(); </script>
+
+    <div id="lv-container" data-id="city" data-uid="MTAyMC8zMTAyMi83NTcx"></div>
+</section>
+
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2017/10/30/surface及surfaceview使用总结/" title="上一篇: surface及surfaceview使用总结">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2017/10/13/让ubuntu下的eclipse支GBK编码/" title="下一篇: 让ubuntu下的eclipse支GBK编码">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/05/30/YOLO-v3论文阅读笔记/">YOLO-v3论文阅读笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/30/YOLO-v2论文阅读笔记/">YOLO-v2论文阅读笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/30/YOLO-v1论文阅读笔记/">YOLO-v1论文阅读笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/14/SSD物体检测论文阅读笔记/">深度学习——SSD论文阅读笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/10/CNN卷积神经网络解读/">深度学习——CNN卷积神经网络</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/12/用pyqt5构建人脸识别界面/">用pyqt5构建人脸识别界面</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/26/TCP和UDP之间的区别/">TCP和UDP之间的区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/20/Ubuntu16-04安装多版本Opencv/">Ubuntu16.04安装多版本Opencv</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/26/python环境配置/">python环境配置</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/20/Ubuntu软件创建图标/">Ubuntu软件创建图标</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/19/tfmodel-Object-Detection-API学习笔记/">tfmodel_Object_Detection_API学习笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/04/TensorflowPython代码学习笔记/">TensorflowPython代码学习笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/30/surface及surfaceview使用总结/">surface及surfaceview使用总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/26/Nvidia-TX1刷机教程/">Nvidia-TX1刷机教程</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/13/让ubuntu下的eclipse支GBK编码/">让ubuntu下的eclipse支GBK编码</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/13/DeepLearning-ai课程——改善深度神经网络/">深度学习——改善深度神经网络</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/12/深度学习——神经网络和深度学习/">DeepLearning.ai课程——神经网络和深度学习</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/26/AKJ-UAV-APP调试问题及解决办法/">AKJ_UAV_APP调试问题及解决办法</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/23/搭建Hexo-github博客-1/">搭建Hexo+github博客(二)</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/23/搭建Hexo-github博客/">搭建Hexo+github博客(一)</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/23/深度学习—优化神经网络/">深度学习—优化神经网络</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/23/深度学习—构建机器学习工程/">深度学习——构建机器学习工程</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/23/我的博客之路/">我的博客之路</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/23/天才在左，疯子在右/">天才在左，疯子在右</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/23/Python-Numpy学习/">Python-Numpy学习</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/23/深度学习—正则化/">深度学习—正则化</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2017-2018 SunshineDxiao
+            </div>
+            <div class="footer-right">
+                <font color=green> 小伙子，加油！你渴望的一定不是平凡之路！</font>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="本站访量"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="本文热度"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span></span><span>°C</span>
+                    </span>
+                    <span>| </span>
+                    <span title="总量不多啊，继续努力！">
+	                    <span><i class="fa fa-bar-chart-o" aria-hidden="true"></i></span>
+                    <span class="post-count"><b>31.7k</b></span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+<!--页面点击小红心-->
+<script type="text/javascript" src="/js/love.js"></script>
+
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 10;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-106881307-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+    <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+             title: "a.article-title, .article-more-link a", 
+             post: ".article-entry a[href], .copyright a[href]", 
+            
+             categories: ".article-category a, a.tag-list-link", 
+            
+            
+            
+            
+            
+            
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+    <script>
+        var originTitle = document.title;
+        var titleTime;
+        document.addEventListener("visibilitychange", function() {
+            if (document.hidden) {
+                document.title = "(つェ⊂) 我藏好了哦~ " + originTitle;
+                clearTimeout(titleTime);
+            }
+            else {
+                document.title = "(*´∇｀*) 被你发现啦~ " + originTitle;
+                titleTime = setTimeout(function() {
+                    document.title = originTitle;
+                }, 2000);
+            }
+        })
+    </script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>
