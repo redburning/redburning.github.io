@@ -1,0 +1,272 @@
+body {
+  margin: 0px !important;
+}
+
+.header {
+  background-color: #000;
+  color: #fff;
+  text-align: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-bar {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 0;
+}
+
+.nav-bar a {
+  color: #d8d8df;
+  text-decoration: none;
+  padding: 5px 12px;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+}
+
+.nav-bar a:hover {
+  text-decoration: none;
+  background-color: #393946;
+}
+
+.main-content {
+  margin-top: 60px; /* Adjust for header height */
+}
+
+.row {
+  display: flex;
+  gap: 40px;
+}
+
+.row h2 {
+  margin-top: 0px;
+}
+
+.col-6 {
+  width: 60%;
+}
+
+.col-4 {
+  width: 40%;
+}
+
+.img-responsive {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, .2);
+  border-radius: 6px;
+  width: 100%;
+}
+
+/* 默认样式，适用于最小屏幕 */
+.container {
+  padding-right: 20px;
+  padding-left: 20px;
+  margin-right: auto;
+  margin-left: auto;
+  width: auto; /* 初始宽度自动适应 */
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+}
+
+.gap-20 {
+  gap: 20px;
+}
+
+.align-center {
+  display: flex;
+  align-items: center;
+}
+
+.main-content hr {
+  margin-top: 60px;
+  margin-bottom: 60px;
+  border-color: #eee !important;
+  opacity: 1 !important;
+  border: 0;
+  border-top: 1px solid;
+}
+
+/* 当屏幕宽度大于 768px 时 */
+@media (min-width: 768px) {
+  .container {
+    width: 750px;
+  }
+}
+
+/* 当屏幕宽度大于 992px 时 */
+@media (min-width: 992px) {
+  .container {
+    width: 970px;
+  }
+}
+
+/* 当屏幕宽度大于 1200px 时 */
+@media (min-width: 1200px) {
+  .container {
+    width: 1176px;
+  }
+}
+
+/* 当屏幕宽度大于 1400px 时 */
+@media (min-width: 1400px) {
+  .container {
+    width: 1342px;
+  }
+}
+
+.mt-10 {
+  margin-top: 10px;
+}
+
+.text-gray-10 {
+  color: #5c5c70 !important;
+}
+
+.text-center {
+  text-align: center !important;
+}
+
+.maxw-750 {
+  max-width: 750px;
+}
+
+.carousel-container {
+  margin: 0 auto;
+  width: 70%;
+  position: relative;
+}
+
+.carousel-wrapper {
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.carousel-slides {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.carousel-slide {
+  min-width: 100%;
+  box-sizing: border-box;
+}
+
+.carousel-slide img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.carousel-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.7);
+  border: none;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  opacity: .5;
+  transition: .2s opacity;
+}
+
+.carousel-button:hover {
+  opacity: 1;
+}
+
+.carousel-button.prev {
+  left: -120px;
+}
+
+.carousel-button.next {
+  right: -120px;
+}
+
+.carousel-dots {
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+}
+
+.carousel-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.carousel-dot.active {
+  background: white;
+}
+
+.btn-primary {
+  background-color: #1866d4;
+  color: white;
+  padding: 8px 25px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 160px;
+  display: flex;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.btn-primary:hover {
+  background-color: #3d7bd9;
+}
+
+.btn-plain {
+  background-color: white;
+  color: #1866d4;
+  border: 1px solid #1866d4;
+  border-radius: 5px;
+  padding: 8px 15px;
+  cursor: pointer;
+  width: 160px;
+  display: flex;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.btn-plain:hover {
+  background-color: #f0f0f0;
+}
+
+h1 {
+  font-family: inter, sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  margin-top: 10px;
+}
+
+.block-wrapper {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}

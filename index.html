@@ -2,16 +2,182 @@
 <html>
 <head>
 <title>redburning</title>
-<link rel="stylesheet" href="/css/style.css">
-<script>
-
-</script>
-
+<link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
-<div class="container">
-    <h1>Welcome to redburning</h1>
-    <p>This is a simple HTML template.</p>
+<div class="header">
+    <div class="nav-bar">
+        <a href="index.html">Home</a>
+        <a href="index.html">About</a>
+        <a href="index.html">Contact</a>
+    </div>
 </div>
+<div class="main-content">
+    <div class="block-wrapper" style="background-color: white;">
+        <div class="container">
+            <div class="flex-center">
+                <div>
+                    <div class="flex-center align-center">
+                        <img src="img/ipos/ipos-logo.png" style="height: 70px;">
+                        <div style="font-size: 24px; font-weight: 500;">iPOS</div>
+                    </div>
+                    <h1 class="flex-center">生信组学数据云计算平台</h1>
+                    <div class="text-gray-10 text-center maxw-750">
+                        <p>提供生物信息学组学数据分析服务，支持多种组学数据的处理和分析。</p>
+                        <p>平台旨在为科研人员提供高效、便捷的组学数据分析 BI 工具。</p>
+                    </div>
+                </div>
+            </div>
+            <div class="flex-center gap-20" style="margin-top: 10px; margin-bottom: 20px;">
+                <a class="btn-primary" href="./products/ipos.html">了解更多</a>
+                <a class="btn-plain" href="http://82.157.20.231:3838/ipos" target="_blank">开始试用 iPOS</a>
+            </div>
+            <div class="flex-center">
+                <div style="width: 70%;">
+                    <img src="img/ipos/home.png" class="img-responsive">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="block-wrapper" style="background-color: #f5f7fa;">
+        <div class="container">
+            <div class="flex-center">
+                <div>
+                    <div class="flex-center align-center" style="margin-bottom: 20px;">
+                        <img src="img/npms/npms-logo.svg" style="height: 26px;">
+                    </div>
+                    <h1 class="flex-center">质谱谱图数据库</h1>
+                    <div class="text-gray-10 text-center maxw-750">
+                        <p>提供质谱数据的存储、查询、分析和鉴定服务，支持多种质谱数据格式。</p>
+                        <p>平台旨在为质谱研究人员提供高效、便捷的谱图数据搜索引擎。</p>
+                    </div>
+                </div>
+            </div>
+            <div class="flex-center gap-20" style="margin-top: 10px; margin-bottom: 20px;">
+                <a class="btn-primary" href="./products/npms.html">了解更多</a>
+                <a class="btn-plain" href="http://81.70.215.151:8091/" target="_blank">开始试用 NPMS</a>
+            </div>
+            <div class="flex-center">
+                <div style="width: 70%;">
+                    <img src="img/npms/home.png" class="img-responsive">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="block-wrapper" style="background-color: white;">
+        <div class="container">
+            <div class="flex-center">
+                <div>
+                    <div class="flex-center align-center">
+                        <img src="img/qc-master/logo.png" style="height: 70px;">
+                    </div>
+                    <h1 class="flex-center">组学数据质量实时监控平台</h1>
+                    <div class="text-gray-10 text-center maxw-750">
+                        <p>提供组学数据的质量监控、分析和可视化服务，支持多种组学数据格式。</p>
+                        <p>平台旨在为科研人员提供高效、便捷的组学数据质量控制工具。</p>
+                    </div>
+                </div>
+            </div>
+            <div class="flex-center gap-20" style="margin-top: 10px; margin-bottom: 20px;">
+                <a class="btn-primary" href="./products/qc-master.html">了解更多</a>
+                <a class="btn-plain">下载试用 QC-Master</a>
+            </div>
+            <div class="carousel-container">
+                <div class="carousel-wrapper">
+                    <div class="carousel-slides">
+                        <div class="carousel-slide">
+                            <img src="img/qc-master/capture-1.png">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="img/qc-master/capture-2.png">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="img/qc-master/capture-3.png">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="img/qc-master/capture-4.png">
+                        </div>
+                    </div>
+                    <button class="carousel-button prev">
+                        <svg width="36" height="36" viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="17.25" transform="rotate(-180 18 18)" stroke="#505062" stroke-width="1.5"></circle><path d="M20.5 25.5 13 18l7.5-7.5" stroke="#505062" stroke-width="1.5"></path></svg>
+                    </button>
+                    <button class="carousel-button next" style="transform: scaleX(-1);">
+                        <svg width="36" height="36" viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="17.25" transform="rotate(-180 18 18)" stroke="#505062" stroke-width="1.5"></circle><path d="M20.5 25.5 13 18l7.5-7.5" stroke="#505062" stroke-width="1.5"></path></svg>
+                    </button>
+                    <div class="carousel-dots"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const carousel = document.querySelector('.carousel-slides');
+    const slides = document.querySelectorAll('.carousel-slide');
+    const dotsContainer = document.querySelector('.carousel-dots');
+    const prevButton = document.querySelector('.carousel-button.prev');
+    const nextButton = document.querySelector('.carousel-button.next');
+    
+    let currentSlide = 0;
+    const slideCount = slides.length;
+    
+    // Create dots
+    slides.forEach((_, index) => {
+        const dot = document.createElement('span');
+        dot.classList.add('carousel-dot');
+        if (index === 0) dot.classList.add('active');
+        dot.addEventListener('click', () => goToSlide(index));
+        dotsContainer.appendChild(dot);
+    });
+    
+    // Update dots
+    function updateDots() {
+        const dots = document.querySelectorAll('.carousel-dot');
+        dots.forEach((dot, index) => {
+            dot.classList.toggle('active', index === currentSlide);
+        });
+    }
+    
+    // Go to specific slide
+    function goToSlide(index) {
+        currentSlide = index;
+        carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
+        updateDots();
+    }
+    
+    // Next slide
+    function nextSlide() {
+        currentSlide = (currentSlide + 1) % slideCount;
+        goToSlide(currentSlide);
+    }
+    
+    // Previous slide
+    function prevSlide() {
+        currentSlide = (currentSlide - 1 + slideCount) % slideCount;
+        goToSlide(currentSlide);
+    }
+    
+    // Add button listeners
+    nextButton.addEventListener('click', nextSlide);
+    prevButton.addEventListener('click', prevSlide);
+    
+    // Auto advance slides
+    let slideInterval = setInterval(nextSlide, 5000);
+    
+    // Pause on hover
+    const carouselWrapper = document.querySelector('.carousel-wrapper');
+    carouselWrapper.addEventListener('mouseenter', () => {
+        clearInterval(slideInterval);
+    });
+    
+    carouselWrapper.addEventListener('mouseleave', () => {
+        slideInterval = setInterval(nextSlide, 5000);
+    });
+});
+</script>
+
 </body>
 </html>
