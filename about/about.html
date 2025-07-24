@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>关于我们 - redburning</title>
+<link rel="stylesheet" href="../css/style.css">
+<script src="../js/components.js"></script>
+</head>
+<body>
+<div id="header"></div>
+
+<div class="main-content">
+    <div class="block-wrapper" style="background-color: white;">
+        <div class="container">
+            <h1>关于我们</h1>
+            <p>这是关于我们页面的内容。</p>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // 加载头部，注意路径需要根据当前页面位置调整
+    loadComponent('header', '../components/header.html');
+});
+</script>
+
+</body>
+</html>

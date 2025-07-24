@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>布局示例 - redburning</title>
+<link rel="stylesheet" href="../css/style.css">
+<script src="../js/components.js"></script>
+</head>
+<body>
+<div id="header"></div>
+
+<div class="main-content">
+    <div class="block-wrapper" style="background-color: white;">
+        <div class="container">
+            <h1 class="flex-center main-title">图文混排布局示例</h1>
+            
+            <!-- 图左文右布局 -->
+            <div class="row">
+                <div class="col-6">
+                    <div class="img-content">
+                        <img src="../img/ipos/difference-analysis.png" alt="分析图示例">
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="text-content">
+                        <h2>差异性分析</h2>
+                        <p>差异性分析是一种统计方法，用于确定两个或多个组之间的差异是否具有统计学意义。这种分析在生物信息学研究中尤为重要，可以帮助研究人员识别与特定疾病或条件相关的基因或代谢物。</p>
+                        <p>通过这种分析，科学家们可以更好地理解生物系统的工作原理，并找出潜在的干预靶点。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 文左图右布局（使用row-reverse实现交错效果） -->
+            <div class="row-reverse">
+                <div class="col-6">
+                    <div class="img-content">
+                        <img src="../img/ipos/dimension-reduction.png" alt="降维分析图示例">
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="text-content">
+                        <h2>降维分析</h2>
+                        <p>降维分析是一种减少数据集中变量数量的技术，同时保留最重要的信息。这在处理高维度的生物组学数据时尤其有用。</p>
+                        <p>主成分分析（PCA）和t-SNE是常用的降维方法，可以帮助研究人员在复杂的数据集中识别模式和结构。</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 图左文右布局 -->
+            <div class="row">
+                <div class="col-6">
+                    <div class="img-content">
+                        <img src="../img/ipos/pathway-gallery-1.png" alt="通路分析图示例">
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="text-content">
+                        <h2>通路分析</h2>
+                        <p>通路分析是一种将复杂的生物数据整合到已知生物学通路中的方法，有助于理解基因或蛋白质如何相互作用以执行特定的细胞功能。</p>
+                        <p>这种分析可以揭示疾病的分子机制，并帮助识别可能的治疗靶点。通过可视化这些通路，研究人员可以更直观地理解复杂的生物过程。</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 文左图右布局（使用row-reverse实现交错效果） -->
+            <div class="row-reverse">
+                <div class="col-6">
+                    <div class="img-content">
+                        <img src="../img/ipos/missingvalue-imputation-1.png" alt="缺失值插补图示例">
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="text-content">
+                        <h2>缺失值插补</h2>
+                        <p>缺失值插补是处理数据集中缺失数据的技术，在生物信息学中尤为重要，因为实验数据往往不是完整的。</p>
+                        <p>通过统计方法估计缺失值，研究人员可以最大限度地利用可用数据，而不必放弃包含缺失值的样本或变量。这种方法可以提高统计分析的稳健性和准确性。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

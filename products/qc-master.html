@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QC-Master - 组学数据质量实时监控平台</title>
+<link rel="stylesheet" href="../css/style.css">
+<script src="../js/components.js"></script>
+<style>
+/* QC-Master页面特定样式 */
+@media (max-width: 767.98px) {
+    .text-content h2 {
+        font-size: 1.4rem;
+        margin-top: 5px;
+        margin-bottom: 12px;
+    }
+    
+    .text-content p {
+        font-size: 0.9rem;
+        line-height: 1.5;
+        margin-bottom: 8px;
+    }
+    
+    .text-content ul {
+        font-size: 0.9rem;
+        line-height: 1.6;
+        margin-bottom: 8px;
+    }
+    
+    .block-wrapper {
+        padding-top: 25px;
+        padding-bottom: 25px;
+    }
+    
+    .video-container {
+        margin-bottom: 5px;
+    }
+}
+
+/* 平板优化 */
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .text-content h2 {
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+    }
+    
+    .col-4 {
+        padding: 0 10px;
+    }
+}
+
+/* 特性列表样式 */
+.feature-list {
+    list-style: none;
+    padding-left: 0;
+    color: #5c5c70;
+    line-height: 1.8;
+    margin-bottom: 15px;
+}
+
+.feature-bullet {
+    color: #1866d4;
+    font-weight: bold;
+    margin-right: 8px;
+    font-size: 1.1em;
+}
+
+/* 响应式视频容器 */
+.video-container video {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+/* 底部CTA区域样式 */
+.cta-section {
+    text-align: center;
+    padding: 20px 0;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.cta-title {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.cta-description {
+    font-size: 1rem;
+    color: #5c5c70;
+    margin-bottom: 25px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media (max-width: 767.98px) {
+    .cta-title {
+        font-size: 1.4rem;
+    }
+    
+    .cta-description {
+        font-size: 0.9rem;
+        margin-bottom: 20px;
+    }
+    
+    .button-group {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+</style>
+</head>
+<body>
+<div id="header"></div>
+
+<div class="main-content">
+    <div class="block-wrapper" style="background-color: white; padding-bottom: 0;">
+        <div class="container">
+            <div class="flex-center">
+                <div class="hero-content">
+                    <div class="flex-center align-center logo-section">
+                        <img src="../img/qc-master/logo.png" alt="QC-Master Logo" class="logo-img">
+                    </div>
+                    <h1 class="flex-center main-title">组学数据质量实时监控平台</h1>
+                    <div class="text-gray-10 text-center maxw-750 description">
+                        <p>QC-Master 是一个专为组学数据设计的质量监控平台，能够实时分析实验数据质量，监测异常波动，提高实验可靠性。</p>
+                        <p>该平台支持多种组学数据格式，提供丰富的可视化和分析工具，帮助研究人员确保数据质量和实验稳定性。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="block-wrapper" style="background-color: #f5f7fa;">
+        <div class="container">
+            <!-- 图左文右布局 -->
+            <div class="row">
+                <div class="col-6">
+                    <div class="img-content video-container">
+                        <video autoplay loop muted playsinline class="img-responsive" poster="../img/qc-master/capture-1.png">
+                            <source src="../img/qc-master/qc-master-all.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="text-content">
+                        <h2>实时监控</h2>
+                        <p>QC-Master 可以实时追踪和分析生物样本中的分子变化，能够提供对实验过程的即时反馈，包括：</p>
+                        <ul class="feature-list">
+                            <li><span class="feature-bullet">•</span> 实时监控 Base Peak Chromatogram</li>
+                            <li><span class="feature-bullet">•</span> 保留时间监控</li>
+                            <li><span class="feature-bullet">•</span> 标准偏差监控</li>
+                            <li><span class="feature-bullet">•</span> Peak Intensity 监控</li>
+                            <li><span class="feature-bullet">•</span> Peak Area 监控</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="block-wrapper" style="background-color: white;">
+        <div class="container">
+            <div class="row-reverse">
+                <div class="col-6">
+                    <div class="img-content video-container">
+                        <video autoplay loop muted playsinline class="img-responsive">
+                            <source src="../img/qc-master/qc-master-eic.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="text-content">
+                        <h2>Extract Ion Chromatogram</h2>
+                        <p>提取离子色谱图（EIC）是一种用于分析特定离子在时间上的变化的技术，能够提供对目标化合物的详细信息。</p>
+                        <p>通过提取离子色谱图，研究人员可以更好地理解样品中的化合物特征，从而提高数据分析的准确性。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="block-wrapper" style="background-color: #f5f7fa;">
+        <div class="container">
+            <div class="row">
+                <div class="col-6">
+                    <div class="img-content video-container">
+                        <video autoplay loop muted playsinline class="img-responsive">
+                            <source src="../img/qc-master/qc-master-bpc.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="text-content">
+                        <h2>Base Peak Chromatogram</h2>
+                        <p>Base Peak Chromatogram (BPC) 是一种常用的质谱数据可视化方法，通过显示每个时间点上最强信号的离子强度，帮助研究人员快速识别样品中的主要成分。</p>
+                        <p>这种方法可以有效地简化复杂的质谱数据，突出显示最重要的信息，从而加速数据分析和解读过程。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="block-wrapper" style="background-color: white;">
+        <div class="container">
+            <div class="row-reverse">
+                <div class="col-6">
+                    <div class="img-content video-container">
+                        <video autoplay loop muted playsinline class="img-responsive">
+                            <source src="../img/qc-master/qc-master-rt.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="text-content">
+                        <h2>保留时间监控</h2>
+                        <p>保留时间监控是一种用于评估分析过程中化合物保留时间稳定性的方法，特别是在生物信息学中。</p>
+                        <p>通过监控保留时间，研究人员可以识别数据中的异常值和变异性，从而更好地理解实验结果的可靠性。</p>
+                        <p>可以自由编辑Panel中的数据样式，以满足特定的分析需求。可以定义双阈值线来监控保留时间的变化。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="block-wrapper" style="background-color: #f5f7fa;">
+        <div class="container">
+            <div class="row">
+                <div class="col-6">
+                    <div class="img-content video-container">
+                        <video autoplay loop muted playsinline class="img-responsive">
+                            <source src="../img/qc-master/qc-master-rel-abs-error.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="text-content">
+                        <h2>标准偏差监控</h2>
+                        <p>标准偏差监控是一种用于评估数据集稳定性和一致性的技术，特别是在生物信息学中。QC-Master 提供了相对标准偏差监控和绝对标准偏差监控。</p>
+                        <p>通过监控标准偏差，研究人员可以识别数据中的异常值和变异性，从而更好地理解实验结果的可靠性。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="block-wrapper" style="background-color: white;">
+        <div class="container">
+            <div class="row-reverse">
+                <div class="col-6">
+                    <div class="img-content video-container">
+                        <video autoplay loop muted playsinline class="img-responsive">
+                            <source src="../img/qc-master/qc-master-grid-layout.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="text-content">
+                        <h2>GridLayout</h2>
+                        <p>GridLayout 实现了更自由的 Panel 布局方式，可以根据需要调整各个 Panel 的大小和位置。</p>
+                        <p>通过将 Panel 放置在 Dashboard 的任意位置，研究人员可以更好地组织信息，提高可读性和用户体验。</p>
+                        <p>所有 Panel 之间数据联动，用户可以通过交互操作实时更新相关信息。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="block-wrapper" style="background-color: #f5f7fa; padding-bottom: 50px;">
+        <div class="container">
+            <div class="cta-section">
+                <h2 class="cta-title">立即体验 QC-Master</h2>
+                <p class="cta-description">了解更多关于 QC-Master 如何帮助您的研究团队提高数据质量和实验效率</p>
+                <div class="button-group">
+                    <a href="#" class="btn-primary">获取演示版</a>
+                    <a href="../contact/contact.html" class="btn-plain">联系我们</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
