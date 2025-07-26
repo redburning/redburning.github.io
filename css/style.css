@@ -1004,8 +1004,7 @@ img {
 
 /* 焦点状态 */
 .btn-primary:focus,
-.btn-plain:focus,
-.carousel-button:focus {
+.btn-plain:focus {
     outline: 2px solid #1866d4;
     outline-offset: 2px;
 }
