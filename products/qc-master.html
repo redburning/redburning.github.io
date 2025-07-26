@@ -33,7 +33,13 @@
     }
     
     .video-container {
-        margin-bottom: 5px;
+        margin-bottom: 10px;
+        max-height: 250px;
+    }
+    
+    /* 移动端特有样式，不再重复定义已在小屏幕媒体查询中定义的样式 */
+    .text-content {
+        padding-top: 0;
     }
 }
 
@@ -46,6 +52,45 @@
     
     .col-4 {
         padding: 0 10px;
+    }
+}
+
+/* 小屏幕布局优化（小于1000px的屏幕） */
+@media (max-width: 999.98px) {
+    .row, .row-reverse {
+        flex-direction: column;
+    }
+    
+    .col-6, .col-4 {
+        width: 100%;
+    }
+    
+    .img-content {
+        margin-bottom: 15px;
+    }
+    
+    /* 确保文本内容在图像下方有足够的间距 */
+    .text-content {
+        padding-top: 5px;
+        padding-bottom: 15px;
+    }
+    
+    /* 视频容器在小屏幕上的优化 */
+    .video-container {
+        max-height: none;
+        height: auto;
+        margin: 0 auto 20px;
+        width: 100%;
+    }
+    
+    /* 小屏幕上的文本内容居中对齐 */
+    .text-content h2 {
+        text-align: center;
+    }
+    
+    /* 容器内边距优化 */
+    .container {
+        padding: 0 15px;
     }
 }
 
@@ -66,11 +111,42 @@
 }
 
 /* 响应式视频容器 */
+.video-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
 .video-container video {
     display: block;
     width: 100%;
     height: auto;
     object-fit: cover;
+    max-height: 100%;
+}
+
+/* 响应式布局容器 */
+.row, .row-reverse {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+@media (min-width: 1000px) {
+    .row {
+        flex-direction: row;
+    }
+    
+    .row-reverse {
+        flex-direction: row-reverse;
+    }
+    
+    .col-6 {
+        width: 60%;
+    }
+    
+    .col-4 {
+        width: 40%;
+    }
 }
 
 /* 底部CTA区域样式 */
@@ -140,8 +216,8 @@
             <div class="row">
                 <div class="col-6">
                     <div class="img-content video-container">
-                        <video autoplay loop muted playsinline class="img-responsive" poster="../img/qc-master/capture-1.png">
-                            <source src="../img/qc-master/qc-master-all.mp4" type="video/mp4">
+                        <video autoplay loop muted playsinline preload="auto" class="img-responsive" poster="/img/qc-master/poster-1.png">
+                            <source src="/img/qc-master/qc-master-all.mp4" type="video/mp4">
                         </video>
                     </div>
                 </div>
@@ -166,8 +242,8 @@
             <div class="row-reverse">
                 <div class="col-6">
                     <div class="img-content video-container">
-                        <video autoplay loop muted playsinline class="img-responsive">
-                            <source src="../img/qc-master/qc-master-eic.mp4" type="video/mp4">
+                        <video autoplay loop muted playsinline preload="auto" class="img-responsive" poster="/img/qc-master/poster-2.png">
+                            <source src="/img/qc-master/qc-master-eic.mp4" type="video/mp4">
                         </video>
                     </div>
                 </div>
@@ -186,8 +262,8 @@
             <div class="row">
                 <div class="col-6">
                     <div class="img-content video-container">
-                        <video autoplay loop muted playsinline class="img-responsive">
-                            <source src="../img/qc-master/qc-master-bpc.mp4" type="video/mp4">
+                        <video autoplay loop muted playsinline preload="auto" class="img-responsive" poster="/img/qc-master/poster-3.png">
+                            <source src="/img/qc-master/qc-master-bpc.mp4" type="video/mp4">
                         </video>
                     </div>
                 </div>
@@ -206,8 +282,8 @@
             <div class="row-reverse">
                 <div class="col-6">
                     <div class="img-content video-container">
-                        <video autoplay loop muted playsinline class="img-responsive">
-                            <source src="../img/qc-master/qc-master-rt.mp4" type="video/mp4">
+                        <video autoplay loop muted playsinline preload="auto" class="img-responsive" poster="/img/qc-master/poster-4.png">
+                            <source src="/img/qc-master/qc-master-rt.mp4" type="video/mp4">
                         </video>
                     </div>
                 </div>
@@ -227,8 +303,8 @@
             <div class="row">
                 <div class="col-6">
                     <div class="img-content video-container">
-                        <video autoplay loop muted playsinline class="img-responsive">
-                            <source src="../img/qc-master/qc-master-rel-abs-error.mp4" type="video/mp4">
+                        <video autoplay loop muted playsinline preload="auto" class="img-responsive">
+                            <source src="/img/qc-master/qc-master-rel-abs-error.mp4" type="video/mp4">
                         </video>
                     </div>
                 </div>
@@ -247,14 +323,14 @@
             <div class="row-reverse">
                 <div class="col-6">
                     <div class="img-content video-container">
-                        <video autoplay loop muted playsinline class="img-responsive">
-                            <source src="../img/qc-master/qc-master-grid-layout.mp4" type="video/mp4">
+                        <video autoplay loop muted playsinline preload="auto" class="img-responsive">
+                            <source src="/img/qc-master/qc-master-grid-layout.mp4" type="video/mp4">
                         </video>
                     </div>
                 </div>
                 <div class="col-4">
                     <div class="text-content">
-                        <h2>GridLayout</h2>
+                        <h2>Grid Layout</h2>
                         <p>GridLayout 实现了更自由的 Panel 布局方式，可以根据需要调整各个 Panel 的大小和位置。</p>
                         <p>通过将 Panel 放置在 Dashboard 的任意位置，研究人员可以更好地组织信息，提高可读性和用户体验。</p>
                         <p>所有 Panel 之间数据联动，用户可以通过交互操作实时更新相关信息。</p>
